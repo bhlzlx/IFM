@@ -1,1 +1,1 @@
-# `icefox` metal wrapper for iOS & macOS
+# `icefox` metal wrapper for iOS & macOS, writen in `objective-c++` & `c++`.
