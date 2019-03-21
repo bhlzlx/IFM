@@ -1,2 +1,1 @@
-# IFM
-a generate metal wrapper, easy to use 
+# icefox metal wrapper for iOS & macOS
