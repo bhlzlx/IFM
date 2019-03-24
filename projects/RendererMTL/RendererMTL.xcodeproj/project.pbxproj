@@ -19,6 +19,8 @@
 		2FEF3B472245269F00EE36AD /* RenderPass.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF3B432245269F00EE36AD /* RenderPass.mm */; };
 		2FEF3B482245269F00EE36AD /* TextureMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF3B442245269F00EE36AD /* TextureMTL.mm */; };
 		2FEF3B4A2245275500EE36AD /* MetalInc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FEF3B492245275500EE36AD /* MetalInc.h */; };
+		2FFAC04B2247BC8700CE0646 /* BufferMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAC0492247BC8700CE0646 /* BufferMTL.mm */; };
+		2FFAC04C2247BC8700CE0646 /* BufferMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FFAC04A2247BC8700CE0646 /* BufferMTL.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		2FEF3B432245269F00EE36AD /* RenderPass.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RenderPass.mm; path = ../../renderer/metal/RenderPass.mm; sourceTree = "<group>"; };
 		2FEF3B442245269F00EE36AD /* TextureMTL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TextureMTL.mm; path = ../../renderer/metal/TextureMTL.mm; sourceTree = "<group>"; };
 		2FEF3B492245275500EE36AD /* MetalInc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetalInc.h; path = ../../renderer/metal/MetalInc.h; sourceTree = "<group>"; };
+		2FFAC0492247BC8700CE0646 /* BufferMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = BufferMTL.mm; path = ../../renderer/metal/BufferMTL.mm; sourceTree = "<group>"; };
+		2FFAC04A2247BC8700CE0646 /* BufferMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BufferMTL.h; path = ../../renderer/metal/BufferMTL.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 				2F467DD022465FB1005CDE71 /* ViewMTL.mm */,
 				2F467DD122465FB1005CDE71 /* ViewMTL.h */,
 				2FBE20C522468621007CEA26 /* MTLTypeMapping.mm */,
+				2FFAC0492247BC8700CE0646 /* BufferMTL.mm */,
+				2FFAC04A2247BC8700CE0646 /* BufferMTL.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -100,6 +106,7 @@
 			files = (
 				2FEF3B462245269F00EE36AD /* TextureMTL.h in Headers */,
 				2FEF3B452245269F00EE36AD /* RenderPass.h in Headers */,
+				2FFAC04C2247BC8700CE0646 /* BufferMTL.h in Headers */,
 				2FE3591C22452A9300F70555 /* ContextMTL.h in Headers */,
 				2F467DD322465FB1005CDE71 /* ViewMTL.h in Headers */,
 				2FE3592022452AC300F70555 /* QueueMTL.h in Headers */,
@@ -167,6 +174,7 @@
 				2FEF3B472245269F00EE36AD /* RenderPass.mm in Sources */,
 				2F467DD222465FB1005CDE71 /* ViewMTL.mm in Sources */,
 				2FE3591B22452A9300F70555 /* ContextMTL.mm in Sources */,
+				2FFAC04B2247BC8700CE0646 /* BufferMTL.mm in Sources */,
 				2FEF3B482245269F00EE36AD /* TextureMTL.mm in Sources */,
 				2FE3591F22452AC300F70555 /* QueueMTL.mm in Sources */,
 			);

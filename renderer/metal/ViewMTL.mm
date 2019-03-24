@@ -7,6 +7,8 @@
 //
 
 #include "ViewMTL.h"
+#include "ContextMTL.h"
+#include "QueueMTL.h"
 
 namespace Ks {
     void ViewMTL::resize(uint32_t _width, uint32_t _height) {
@@ -16,11 +18,13 @@ namespace Ks {
     }
     
     void ViewMTL::beginFrame() {
-        
+        GetContext(context);
+        context->getGraphicsQueue().enterFrame();
     }
     
     void ViewMTL::endFrame() {
-        
+        GetContext(context);
+        context->getGraphicsQueue().leaveFrame();
     }
     
     Ks::IRenderPass* ViewMTL::getRenderPass() {

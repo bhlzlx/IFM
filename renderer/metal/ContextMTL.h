@@ -14,6 +14,8 @@
 
 namespace Ks {
     
+    class ViewMTL;
+    
     class ContextMTL : public IContext {
         id<MTLDevice> m_device;
         CAMetalLayer* m_metalLayer;

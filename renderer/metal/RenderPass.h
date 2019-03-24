@@ -1,18 +1,35 @@
 #pragma once
+#include <KsRenderer.h>
 #include "MetalInc.h"
 
 namespace Ks
 {
-    class TextureMTL : public ITexture {
+    class TextureMTL;
+    
+    class AttachmentMTL: public IAttachment {
     private:
-        TextureDescription m_description;
-        id<MTLTexture> m_texture;
+        TextureMTL* m_texture;
     public:
-        const Ks::TextureDescription &getDesc() const override;
+    };
+    
+    class RenderPassMTL : public IRenderPass {
+    private:
+        AttachmentMTL* m_colorAttachment[MaxRenderTarget];
+        AttachmentMTL* m_depthStencil;
+    public:
+        RenderPassMTL() {
+        }
+    };
+    
+    class RenderPassMetalLayer : public IRenderPass {
+    private:
+        id<MTLDrawable> m_drawable;
+    public:
+        RenderPassMetalLayer():m_drawable(nil) {
+        }
         
-        void setSubData(const void *_data, size_t _length, const Ks::ImageRegion &_region) override;
-        
-        void release() override;
-        
+        id<MTLDrawable> drawable() {
+            return m_drawable;
+        }
     };
 }
