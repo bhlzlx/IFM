@@ -79,36 +79,32 @@ namespace Ks {
         }
     }
     
-    inline uint32_t PixelBytes( KsFormat _format ){
+    inline uint32_t PixelBits( KsFormat _format ){
         switch (_format) {
             case KsInvalidFormat:
                 return 0;
             case KsRGBA8888_UNORM:
-                return 4;
             case KsBGRA8888_UNORM:
-                return 4;
             case KsRGBA8888_SNORM:
-                return 8;
+                return 32;
             case KsRGB565_PACKED:
-                return 2;
             case KsRGBA5551_PACKED:
-                return 2;
+                16;
             case KsRGBA_F16:
-                return 8;
+                return 64;
             case KsRGBA_F32:
-                return 16;
+                return 128;
             case KsDepth24FStencil8:
-                return 4;
             case KsDepth32F:
-                return 4;
-            case KsDepth32FStencil8:return 5;
-                break;
+                return 32;
+            case KsDepth32FStencil8:
+                return 40;
             case KsETC2_LINEAR_RGBA:
-                return 0;
+                return 8;
             case KsBC3_LINEAR_RGBA:
-                return 0;
+                return 8;
             case KsPVRTC_LINEAR_RGBA:
-                return 0;
+                return 4;
         }
         return 0;
     }

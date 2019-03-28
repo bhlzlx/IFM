@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef _WIN32
+
 #pragma warning(disable:4251)
 
 #ifdef KS_DYNAMIC_LINK
@@ -8,6 +10,9 @@
 	#define KS_API_DECL __declspec(dllimport)
 #else
 	#define KS_API_DECL
+#endif
+#else
+#define KS_API_DECL 
 #endif
 
 #include "KsDefine.h"
@@ -63,12 +68,29 @@ namespace Ks{
     };
 
     typedef Rect<int> Scissor;
-
+	/*
 	struct ImageRegion {
 		uint32_t			baseMipLevel;
 		uint32_t			mipLevelCount;
 		Offset3D<uint32_t>	offset;
 		Size3D<uint32_t>	size;
+	};*/
+	// Graphics API Command interface
+	// update only a part of one slice
+
+	struct TextureRegion {
+		uint32_t mipLevel; // mip map level
+		// for texture 2d, baseLayer must be 0
+		// for texture 2d array, baseLayer is the index
+		// for texture cube, baseLayer is from 0 ~ 5
+		// for texture cube array, baseLayer is ( index * 6 + face )
+		// for texture 3d, baseLayer is ( depth the destination layer )
+		// for texture 3d array, baseLayer is ( {texture depth} * index + depth of the destination layer )
+		uint32_t baseLayer;
+		// for texture 2d, offset.z must be 0
+		Offset3D<uint32_t> offset;
+		// for texture 2d, size.depth must be 1
+		Size3D<uint32_t> size;
 	};
 
     enum DeviceType {
@@ -103,6 +125,8 @@ namespace Ks{
 		KsDepth32FStencil8,
 		// compressed type
 		KsETC2_LINEAR_RGBA,
+		KsEAC_RG11_UNORM,
+		KsBC1_LINEAR_RGBA,
 		KsBC3_LINEAR_RGBA,
 		KsPVRTC_LINEAR_RGBA,
 	};
@@ -301,6 +325,7 @@ namespace Ks{
     };
 
     enum TextureType {
+		Texture1D,
         Texture2D,
         Texture2DArray,
         TextureCube,
@@ -418,7 +443,8 @@ namespace Ks{
     class KS_API_DECL ITexture {
 	public:
         virtual const TextureDescription& getDesc() const = 0;
-        virtual void setSubData( const void * _data, size_t _length, const ImageRegion& _region ) = 0;
+        virtual void setSubData( const void * _data, size_t _length, const TextureRegion& _region ) = 0;
+		virtual void setSubData(const void * _data, size_t _length, const TextureRegion& _region, uint32_t _mipCount ) = 0;
         virtual void release() = 0;
     };
 
@@ -549,6 +575,8 @@ namespace Ks{
         virtual IIndexBuffer* createIndexBuffer( void* _data, size_t _size ) = 0;
 		//virtual IUniformBuffer* createUniformBuffer(size_t _size) = 0;
         virtual ITexture* createTexture(const TextureDescription& _desc, TextureUsageFlags _usage = TextureUsageNone ) = 0;
+		virtual ITexture* createTextureDDS( const void* _data, size_t _length ) = 0;
+		virtual ITexture* createTextureKTX(const void* _data, size_t _length) = 0;
 		virtual IAttachment* createAttachment(KsFormat _format) = 0;
         virtual IRenderPass* createRenderPass( const RenderPassDescription& _desc, IAttachment** _colorAttachments, IAttachment* _depthStencil ) = 0;
         virtual IPipeline* createPipeline( const PipelineDescription& _desc ) = 0;

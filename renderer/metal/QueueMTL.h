@@ -3,6 +3,9 @@
 
 namespace Ks {
     
+    class TextureMTL;
+    class BufferMTL;
+    
     class GraphicsQueue {
     private:
         id<MTLCommandQueue> m_queue;
@@ -29,7 +32,9 @@ namespace Ks {
         bool enterFrame();
         void leaveFrame();
         //
-        void updateTexture( id<MTLTexture> _texture, const void * _data, size_t _length, const ImageRegion& _region );
-        void updateBuffer( id<MTLBuffer> _buffer, size_t _offset, const void * _data, size_t _length );
+        void updateTexture( TextureMTL* _texture, const void * _data, size_t _length, const TextureRegion& _region );
+        void updateTexture( TextureMTL* _texture, const void * _data, size_t _length, const TextureRegion& _region, uint32_t _mipCount );
+        //
+        void updateBuffer( BufferMTL* _buffer, size_t _offset, const void * _data, size_t _length );
     };
 }

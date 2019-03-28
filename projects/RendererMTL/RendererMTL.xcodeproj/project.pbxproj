@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2F467DD222465FB1005CDE71 /* ViewMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F467DD022465FB1005CDE71 /* ViewMTL.mm */; };
 		2F467DD322465FB1005CDE71 /* ViewMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F467DD122465FB1005CDE71 /* ViewMTL.h */; };
+		2F6A50AE224D2F5C009C9A17 /* SwapchainMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F6A50AC224D2F5C009C9A17 /* SwapchainMTL.mm */; };
+		2F6A50AF224D2F5C009C9A17 /* SwapchainMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F6A50AD224D2F5C009C9A17 /* SwapchainMTL.h */; };
 		2FBE20C622468621007CEA26 /* MTLTypeMapping.mm in Headers */ = {isa = PBXBuildFile; fileRef = 2FBE20C522468621007CEA26 /* MTLTypeMapping.mm */; };
 		2FE3591B22452A9300F70555 /* ContextMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3591922452A9300F70555 /* ContextMTL.mm */; };
 		2FE3591C22452A9300F70555 /* ContextMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE3591A22452A9300F70555 /* ContextMTL.h */; };
@@ -26,6 +28,8 @@
 /* Begin PBXFileReference section */
 		2F467DD022465FB1005CDE71 /* ViewMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewMTL.mm; path = ../../renderer/metal/ViewMTL.mm; sourceTree = "<group>"; };
 		2F467DD122465FB1005CDE71 /* ViewMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewMTL.h; path = ../../renderer/metal/ViewMTL.h; sourceTree = "<group>"; };
+		2F6A50AC224D2F5C009C9A17 /* SwapchainMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = SwapchainMTL.mm; path = ../../renderer/metal/SwapchainMTL.mm; sourceTree = "<group>"; };
+		2F6A50AD224D2F5C009C9A17 /* SwapchainMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SwapchainMTL.h; path = ../../renderer/metal/SwapchainMTL.h; sourceTree = "<group>"; };
 		2FBE20C522468621007CEA26 /* MTLTypeMapping.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = MTLTypeMapping.mm; path = ../../renderer/metal/MTLTypeMapping.mm; sourceTree = "<group>"; };
 		2FE3591922452A9300F70555 /* ContextMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = ContextMTL.mm; path = ../../renderer/metal/ContextMTL.mm; sourceTree = "<group>"; };
 		2FE3591A22452A9300F70555 /* ContextMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ContextMTL.h; path = ../../renderer/metal/ContextMTL.h; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				2FBE20C522468621007CEA26 /* MTLTypeMapping.mm */,
 				2FFAC0492247BC8700CE0646 /* BufferMTL.mm */,
 				2FFAC04A2247BC8700CE0646 /* BufferMTL.h */,
+				2F6A50AC224D2F5C009C9A17 /* SwapchainMTL.mm */,
+				2F6A50AD224D2F5C009C9A17 /* SwapchainMTL.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -110,6 +116,7 @@
 				2FE3591C22452A9300F70555 /* ContextMTL.h in Headers */,
 				2F467DD322465FB1005CDE71 /* ViewMTL.h in Headers */,
 				2FE3592022452AC300F70555 /* QueueMTL.h in Headers */,
+				2F6A50AF224D2F5C009C9A17 /* SwapchainMTL.h in Headers */,
 				2FBE20C622468621007CEA26 /* MTLTypeMapping.mm in Headers */,
 				2FEF3B4A2245275500EE36AD /* MetalInc.h in Headers */,
 			);
@@ -174,6 +181,7 @@
 				2FEF3B472245269F00EE36AD /* RenderPass.mm in Sources */,
 				2F467DD222465FB1005CDE71 /* ViewMTL.mm in Sources */,
 				2FE3591B22452A9300F70555 /* ContextMTL.mm in Sources */,
+				2F6A50AE224D2F5C009C9A17 /* SwapchainMTL.mm in Sources */,
 				2FFAC04B2247BC8700CE0646 /* BufferMTL.mm in Sources */,
 				2FEF3B482245269F00EE36AD /* TextureMTL.mm in Sources */,
 				2FE3591F22452AC300F70555 /* QueueMTL.mm in Sources */,

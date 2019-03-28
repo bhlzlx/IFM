@@ -9,6 +9,7 @@
 #include "QueueMTL.h"
 #include "ContextMTL.h"
 #include "BufferMTL.h"
+#include "TextureMTL.h"
 #include "ViewMTL.h"
 #include "MTLTypeMapping.mm"
 #include <stdint.h>
@@ -17,6 +18,10 @@ namespace Ks {
     //
     id<MTLCommandBuffer> GraphicsQueue::getRenderCommandBuffer() {
         return m_renderBuffer;
+    }
+    
+    void GraphicsQueue::initialize( id<MTLCommandQueue> _queue ) {
+        m_queue = _queue;
     }
     
     bool GraphicsQueue::enterFrame() {
@@ -48,8 +53,10 @@ namespace Ks {
         }];
         m_renderBuffer = nil;
     }
+
+    //void updateTexture( TextureMTL* _texture, const void * _data, size_t _length, const TextureRegion& _region, uint32_t _mipCount );
     
-    void GraphicsQueue::updateTexture( id<MTLTexture> _texture, const void * _data, size_t _length, const ImageRegion& _region ) {
+    void GraphicsQueue::updateTexture( TextureMTL* _texture, const void * _data, size_t _length, const TextureRegion& _region ) {
         id<MTLCommandBuffer> command = nil;
         if( !m_enterFrame ) {
             if( m_transferBuffer == nil ) {
@@ -67,8 +74,8 @@ namespace Ks {
         }
         m_blitEncoder = [command blitCommandEncoder];
         BufferMTL buffer = BufferMTL::createBuffer( _length, _data);
-        MTLPixelFormat pixelFormat = _texture.pixelFormat;
-        uint32_t bytesperRow = PixelBytes( MTLFormatToKs(pixelFormat) ) * _region.size.width;
+        MTLPixelFormat pixelFormat = _texture->texture().pixelFormat;
+        uint32_t bytesperRow = PixelBits( MTLFormatToKs(pixelFormat) ) * _region.size.width / 8;
         uint32_t bytesperImage = bytesperRow * _region.size.height;
         MTLSize sourcePixel = {
             _region.size.width, _region.size.height, _region.size.depth
@@ -83,15 +90,15 @@ namespace Ks {
                     sourceBytesPerRow:bytesperRow
                   sourceBytesPerImage:bytesperImage
                            sourceSize:sourcePixel
-                            toTexture:_texture
-                     destinationSlice:_region.offset.z
-                     destinationLevel:_region.baseMipLevel
+                            toTexture:_texture->texture()
+                     destinationSlice:_region.baseLayer
+                     destinationLevel:_region.mipLevel
                     destinationOrigin:org];
         [m_blitEncoder endEncoding];
         m_blitEncoder = nil;
     }
     
-    void GraphicsQueue::updateBuffer( id<MTLBuffer> _buffer, size_t _offset, const void * _data, size_t _length  ) {
+    void GraphicsQueue::updateBuffer( BufferMTL* _buffer, size_t _offset, const void * _data, size_t _length ) {
         id<MTLCommandBuffer> command = nil;
         if( !m_enterFrame ) {
             if( m_transferBuffer == nil ) {
@@ -109,7 +116,7 @@ namespace Ks {
         }
         m_blitEncoder = [command blitCommandEncoder];
         BufferMTL buffer = BufferMTL::createBuffer( _length, _data);
-        [m_blitEncoder copyFromBuffer:buffer.buffer() sourceOffset: 0 toBuffer: _buffer destinationOffset:_offset size:_length];
+        [m_blitEncoder copyFromBuffer:buffer.buffer() sourceOffset: 0 toBuffer: _buffer->buffer() destinationOffset:_offset size:_length];
         [m_blitEncoder endEncoding];
         m_blitEncoder = nil;
     }
