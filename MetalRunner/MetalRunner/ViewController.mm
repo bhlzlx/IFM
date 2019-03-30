@@ -10,11 +10,12 @@
 #import "ks/io/io.h"
 #import <KsRenderer/KsRenderer.h>
 #include <QuartzCore/CAMetalLayer.h>
+#import "KsView.h"
 
 @interface ViewController : NSViewController
 {
-    NSView* _view;
-    CAMetalLayer* _metalLayer;
+    KsView* _view;
+    __weak CAMetalLayer* _metalLayer;
     CVDisplayLinkRef _displayLink;
     Ks::IContext* _context;
     Ks::IView* _gameView;
@@ -36,14 +37,23 @@ static CVReturn renderCallback(CVDisplayLinkRef displayLink,
     return kCVReturnSuccess;
 }
 
+-(void)resize {
+    _gameView->resize( _metalLayer.frame.size.width, _metalLayer.frame.size.height);
+    _gameViewSize = { (uint32_t)_view.frame.size.width,(uint32_t)_view.frame.size.height };
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // create CAMetalLayer
-    _metalLayer = [[CAMetalLayer alloc] init];
+    //
+    _view = (KsView*)self.view;
+    [_view setupMetalLayer];
+    _metalLayer = [_view metalLayer];
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(resize) name:@"resize" object:nil];
+
     _metalLayer.framebufferOnly = YES;
-    _view = [self view];
-    [_metalLayer setFrame:_view.frame];
-    [_view.layer addSublayer:_metalLayer];
+    //[_metalLayer setFrame:_view.frame];
+    //[_view.layer addSublayer:_metalLayer];
     _gameViewSize = { (uint32_t)_view.frame.size.width,(uint32_t)_view.frame.size.height };
     _context = Ks::GetContextMetal();
     //NSBundle * bundle = [NSBundle mainBundle];

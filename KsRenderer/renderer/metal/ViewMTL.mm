@@ -20,9 +20,9 @@ namespace Ks {
     
     void ViewMTL::resize(uint32_t _width, uint32_t _height) {
         GetContext( context );
-        auto layer = context->getMetalLayer();
-        [layer setFrame: NSMakeRect( 0, 0, _width, _height)];
-        [layer setDrawableSize: NSMakeSize( _width, _height)];
+        //auto layer = context->getMetalLayer();
+        //[layer setFrame: NSMakeRect( 0, 0, _width, _height)];
+        //[layer setDrawableSize: NSMakeSize( _width, _height)];
         m_size = { _width, _height };
     }
     

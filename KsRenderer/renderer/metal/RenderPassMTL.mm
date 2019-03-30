@@ -106,21 +106,24 @@ namespace Ks {
         if( !drawable ) {
             return false;
         }
-        if( m_size.width != _width || m_size.height != _height ) {
-            MTLTextureDescriptor* td = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatDepth32Float width:_width height:_height mipmapped:NO];
-            td.resourceOptions = MTLResourceStorageModePrivate;
-            td.usage = MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite;
-            m_depthStencil = [context->getDevice() newTextureWithDescriptor:td];
-            m_size = { _width, _height };
-        }
+        
         if( nil == m_renderPassDescriptor ) {
             m_renderPassDescriptor = [MTLRenderPassDescriptor renderPassDescriptor];
             m_renderPassDescriptor.colorAttachments[0].texture = nil;
             m_renderPassDescriptor.colorAttachments[0].loadAction = LoadActionToMTL( m_desc.colorAttachment[0].loadAction );
             //m_renderPassDescriptor.colorAttachments[0].clearColor
-            m_renderPassDescriptor.depthAttachment.texture = m_depthStencil;
             m_renderPassDescriptor.depthAttachment.loadAction = LoadActionToMTL( m_desc.depthStencil.loadAction );
         }
+        
+        if( m_size.width != _width || m_size.height != _height ) {
+            MTLTextureDescriptor* td = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatDepth32Float width:_width height:_height mipmapped:NO];
+            td.resourceOptions = MTLResourceStorageModePrivate;
+            td.usage = MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite;
+            m_depthStencil = [context->getDevice() newTextureWithDescriptor:td];
+            m_renderPassDescriptor.depthAttachment.texture = m_depthStencil;
+            m_size = { _width, _height };
+        }
+        
         m_renderPassDescriptor.colorAttachments[0].texture = drawable.texture;
         m_renderPassDescriptor.colorAttachments[0].clearColor = m_clearColor;
         m_renderPassDescriptor.depthAttachment.clearDepth = m_clearDepth;

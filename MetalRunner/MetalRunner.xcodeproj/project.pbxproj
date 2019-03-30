@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F2562F8224FA5DE00867323 /* KsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2562F7224FA5DE00867323 /* KsView.m */; };
 		2FC4800B224F8765006BA3D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800A224F8765006BA3D1 /* Assets.xcassets */; };
 		2FC4800E224F8765006BA3D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800C224F8765006BA3D1 /* Main.storyboard */; };
 		2FC48011224F8765006BA3D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48010224F8765006BA3D1 /* main.m */; };
@@ -35,6 +36,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F2562F6224FA5DE00867323 /* KsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsView.h; sourceTree = "<group>"; };
+		2F2562F7224FA5DE00867323 /* KsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KsView.m; sourceTree = "<group>"; };
 		2FC48001224F8762006BA3D1 /* MetalRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FC48004224F8762006BA3D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2FC48007224F8762006BA3D1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 				2FC4800F224F8765006BA3D1 /* Info.plist */,
 				2FC48010224F8765006BA3D1 /* main.m */,
 				2FC48012224F8765006BA3D1 /* MetalRunner.entitlements */,
+				2F2562F6224FA5DE00867323 /* KsView.h */,
+				2F2562F7224FA5DE00867323 /* KsView.m */,
 			);
 			path = MetalRunner;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 			files = (
 				2FC48060224F89E9006BA3D1 /* ViewController.mm in Sources */,
 				2FC48057224F88B1006BA3D1 /* standardIo.cpp in Sources */,
+				2F2562F8224FA5DE00867323 /* KsView.m in Sources */,
 				2FC48011224F8765006BA3D1 /* main.m in Sources */,
 				2FC48059224F88B1006BA3D1 /* path.cpp in Sources */,
 				2FC48062224F89FF006BA3D1 /* AppDelegate.m in Sources */,
