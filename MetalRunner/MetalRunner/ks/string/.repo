@@ -1,0 +1,42 @@
+{
+	"ChainCode" : "G100AB5B047233E1B14B8C1DEFCF8639CE81",
+	"FileList" : 
+	[
+		{
+			"CRC32" : "6ACFEE3D",
+			"ChainCode" : "500087A8D4496855C9C82D0D6B225ED153A9",
+			"Download" : false,
+			"MD5" : "87A8D4496855C9C82D0D6B225ED153A9",
+			"MTime" : 131841391058334165,
+			"Name" : "encoding.cpp",
+			"Size" : 7729
+		},
+		{
+			"CRC32" : "6028D61C",
+			"ChainCode" : "5000A6F7C149257DFA1F580771E6AF460697",
+			"Download" : false,
+			"MD5" : "A6F7C149257DFA1F580771E6AF460697",
+			"MTime" : 131841391058334165,
+			"Name" : "encoding.h",
+			"Size" : 1777
+		},
+		{
+			"CRC32" : "46E035DD",
+			"ChainCode" : "5000E651619CAAE186E854CF3B7BD860351B",
+			"Download" : false,
+			"MD5" : "E651619CAAE186E854CF3B7BD860351B",
+			"MTime" : 131841391058334165,
+			"Name" : "path.cpp",
+			"Size" : 977
+		},
+		{
+			"CRC32" : "624376B5",
+			"ChainCode" : "5000C4072CC7665413851CD44DE3A9E766D7",
+			"Download" : false,
+			"MD5" : "C4072CC7665413851CD44DE3A9E766D7",
+			"MTime" : 131841391058334165,
+			"Name" : "path.h",
+			"Size" : 100
+		}
+	]
+}
