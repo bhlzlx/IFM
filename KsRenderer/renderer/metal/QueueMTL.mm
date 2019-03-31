@@ -26,6 +26,11 @@ namespace Ks {
         m_swapchain = _swapchain;
     }
     
+    void UploadQueue::initialize( id<MTLCommandQueue> _queue ) {
+        m_queue = _queue;
+        m_semaphore = dispatch_semaphore_create(0);
+    }
+    
     bool GraphicsQueue::enterFrame() {
         if( !m_swapchain->prepareFrame() ){
             return false;
@@ -70,7 +75,7 @@ namespace Ks {
         assert( context->getRenderCommandEncoder() == nil );
 #endif
         m_blitEncoder = [command blitCommandEncoder];
-        BufferMTL buffer = BufferMTL::createBuffer( _length, _data);
+        BufferMTL* buffer = BufferMTL::createBuffer( _length, _data, BufferUsageUniform );
         MTLPixelFormat pixelFormat = _texture->texture().pixelFormat;
         uint32_t bytesperRow = PixelBits( MTLFormatToKs(pixelFormat) ) * _region.size.width / 8;
         uint32_t bytesperImage = bytesperRow * _region.size.height;
@@ -82,7 +87,7 @@ namespace Ks {
         org.y = _region.offset.y;
         org.z = 0;
         
-        [m_blitEncoder copyFromBuffer:buffer.buffer()
+        [m_blitEncoder copyFromBuffer:buffer->buffer()
                          sourceOffset:0
                     sourceBytesPerRow:bytesperRow
                   sourceBytesPerImage:bytesperImage
@@ -93,6 +98,7 @@ namespace Ks {
                     destinationOrigin:org];
         [m_blitEncoder endEncoding];
         m_blitEncoder = nil;
+        buffer->release();
     }
     
     void GraphicsQueue::updateBuffer( BufferMTL* _buffer, size_t _offset, const void * _data, size_t _length ) {
@@ -112,9 +118,62 @@ namespace Ks {
         assert( context->getRenderCommandEncoder() == nil );
 #endif
         m_blitEncoder = [command blitCommandEncoder];
-        BufferMTL buffer = BufferMTL::createBuffer( _length, _data);
-        [m_blitEncoder copyFromBuffer:buffer.buffer() sourceOffset: 0 toBuffer: _buffer->buffer() destinationOffset:_offset size:_length];
+        BufferMTL* buffer = BufferMTL::createBuffer( _length, _data, BufferUsageUniform );
+        buffer->setData( _data, _length, 0);
+        [m_blitEncoder copyFromBuffer:buffer->buffer() sourceOffset: 0 toBuffer: _buffer->buffer() destinationOffset:_offset size:_length];
         [m_blitEncoder endEncoding];
         m_blitEncoder = nil;
+        buffer->release();
+    }
+    
+    void UploadQueue::uploadBuffer( BufferMTL* _buffer, size_t _offset, const void * _data, size_t _length ) {
+        id<MTLCommandBuffer> cmd = [m_queue commandBuffer];
+        id<MTLBlitCommandEncoder> encoder = [cmd blitCommandEncoder];
+        BufferMTL* stagingBuffer = BufferMTL::createBuffer( _length, _data, BufferUsageUniform );
+        stagingBuffer->setData( _data, _length, 0);
+        [encoder copyFromBuffer:stagingBuffer->buffer() sourceOffset: 0 toBuffer: _buffer->buffer() destinationOffset:_offset size:_length];
+        [encoder endEncoding];
+        [cmd addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull) {
+            dispatch_semaphore_signal( m_semaphore );
+        }];
+        [cmd commit];
+        dispatch_semaphore_wait( m_semaphore, -1 );
+        stagingBuffer->release();
+    }
+    
+    void UploadQueue::uploadTexture( TextureMTL* _texture, const void * _data, size_t _length, const TextureRegion& _region ) {
+        id<MTLCommandBuffer> cmd = [m_queue commandBuffer];
+        id<MTLBlitCommandEncoder> encoder = [cmd blitCommandEncoder];
+        BufferMTL* stagingBuffer = BufferMTL::createBuffer( _length, _data, BufferUsageUniform );
+        stagingBuffer->setData( _data, _length, 0);
+        //
+        MTLPixelFormat pixelFormat = _texture->texture().pixelFormat;
+        uint32_t bytesperRow = PixelBits( MTLFormatToKs(pixelFormat) ) * _region.size.width / 8;
+        uint32_t bytesperImage = bytesperRow * _region.size.height;
+        MTLSize sourcePixel = {
+            _region.size.width, _region.size.height, _region.size.depth
+        };
+        MTLOrigin org;
+        org.x = _region.offset.x;
+        org.y = _region.offset.y;
+        org.z = 0;
+        
+        [encoder copyFromBuffer:stagingBuffer->buffer()
+                         sourceOffset:0
+                    sourceBytesPerRow:bytesperRow
+                  sourceBytesPerImage:bytesperImage
+                           sourceSize:sourcePixel
+                            toTexture:_texture->texture()
+                     destinationSlice:_region.baseLayer
+                     destinationLevel:_region.mipLevel
+                    destinationOrigin:org];
+        [encoder endEncoding];
+        
+        [cmd addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull) {
+            dispatch_semaphore_signal( m_semaphore );
+        }];
+        [cmd commit];
+        dispatch_semaphore_wait( m_semaphore, -1 );
+        stagingBuffer->release();
     }
 }

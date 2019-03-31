@@ -17,19 +17,13 @@ namespace Ks {
         //
         id<MTLCommandQueue> graphicsQueue = [m_device newCommandQueue];
         m_graphicsQueue.initialize( graphicsQueue, &m_swapchain );
+        id<MTLCommandQueue> uploadQueue = [m_device newCommandQueue];
+        m_uploadQueue.initialize( uploadQueue );
+        //
         m_mainRenderPass.initialize( &m_swapchain );
         return true;
     }
     
-    IStaticVertexBuffer* ContextMTL::createStaticVertexBuffer( void* _data, size_t _size ) {
-        return nullptr;
-    }
-    IDynamicVertexBuffer* ContextMTL::createDynamicVertexBuffer( size_t _size ) {
-        return nullptr;
-    }
-    IIndexBuffer* ContextMTL::createIndexBuffer( void* _data, size_t _size ) {
-        return nullptr;
-    }
     ITexture* ContextMTL::createTexture(const TextureDescription& _desc, TextureUsageFlags _usage ) {
         return nullptr;
     }

@@ -40,10 +40,12 @@ namespace Ks {
     
     void TextureMTL::setSubData( const void * _data, size_t _length, const TextureRegion& _region ) {
         // update var queue
+        GetContext(context)
+        context->getGraphicsQueue().updateTexture( this, _data, _length, _region);
     }
     //
     void TextureMTL::setSubData(const void * _data, size_t _length, const TextureRegion& _region, uint32_t _mipCount ) {
-        // update var queue
+        return;
     }
     
     void TextureMTL::release() {

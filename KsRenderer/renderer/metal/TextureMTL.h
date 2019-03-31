@@ -15,7 +15,7 @@ namespace Ks {
         virtual void setSubData( const void * _data, size_t _length, const TextureRegion& _region ) override;
         //
         virtual void setSubData(const void * _data, size_t _length, const TextureRegion& _region, uint32_t _mipCount ) override;
-        
+        //
         virtual void release() override;
         
         id<MTLTexture> texture() {

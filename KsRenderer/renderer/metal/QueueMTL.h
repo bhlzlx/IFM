@@ -36,4 +36,15 @@ namespace Ks {
         //
         void updateBuffer( BufferMTL* _buffer, size_t _offset, const void * _data, size_t _length );
     };
+    
+    class UploadQueue {
+    private:
+        id<MTLCommandQueue> m_queue;
+        dispatch_semaphore_t m_semaphore;
+        //
+    public:
+        void initialize( id<MTLCommandQueue> _queue );
+        void uploadBuffer( BufferMTL* _buffer, size_t _offset, const void * _data, size_t _length );
+        void uploadTexture( TextureMTL* _texture, const void * _data, size_t _length, const TextureRegion& _region );
+    };
 }

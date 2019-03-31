@@ -14,6 +14,7 @@ namespace Ks {
     class BufferMTL {
     private:
         id<MTLBuffer> m_buffer;
+        BufferUsageFlagBits m_usage;
         BufferMTL( const BufferMTL& _buffer );
         BufferMTL& operator = ( const BufferMTL& _buffer );
     public:
@@ -24,37 +25,74 @@ namespace Ks {
             m_buffer = _buffer.m_buffer;
             _buffer.m_buffer = nil;
         }
+        BufferMTL& operator = ( BufferMTL&& _buffer ) {
+            m_buffer = _buffer.m_buffer;
+            _buffer.m_buffer = nil;
+            return *this;
+        }
         id<MTLBuffer> buffer() {
             return m_buffer;
         }
+        void release() {
+            delete this;
+        }
         //
+        void setData( const void * _data, size_t _length, size_t _offset );
         void setDataCPUAccess( const void * _data, size_t _length, size_t _offset );
         void setDataGPUAccess( const void * _data, size_t _length, size_t _offset );
         //
-        static BufferMTL createBuffer( size_t _size, const void * _data );
-    };
-    
-    class SVBO : public IStaticVertexBuffer {
-    private:
-        BufferMTL m_buffer;
-    public:
-        SVBO( BufferMTL&& _buffer ) : m_buffer( std::move(_buffer) ) {
+        static BufferMTL* createBuffer( size_t _size, const void * _data, BufferUsageFlagBits _usage );
+        
+        ~BufferMTL() {
+
         }
     };
     
-    class DVBO : public IDynamicVertexBuffer {
+    class SVBOMTL : public IStaticVertexBuffer {
     private:
         BufferMTL m_buffer;
     public:
-        DVBO( BufferMTL&& _buffer ) : m_buffer( std::move(_buffer) ){
+        SVBOMTL( BufferMTL&& _buffer ) : m_buffer( std::move(_buffer) ) {
+        }
+        virtual void setData( const void * _data, size_t _size, size_t _offset) override;
+        virtual void release() override;
+        virtual size_t getSize() override;
+        virtual BufferType getType() override;
+    };
+    
+    class DVBOMTL : public IDynamicVertexBuffer {
+    private:
+        BufferMTL m_buffer;
+    public:
+        DVBOMTL( BufferMTL&& _buffer ) : m_buffer( std::move(_buffer) ){
+        }
+        virtual void setData( const void * _data, size_t _size, size_t _offset) override;
+        virtual void release() override {
+            delete this;
+        }
+        virtual size_t getSize() override {
+            return m_buffer.buffer().length;
+        }
+        virtual BufferType getType() override {
+            return DVBO;
         }
     };
     
-    class IBO : public IIndexBuffer {
+    class IBOMTL : public IIndexBuffer {
     private:
         BufferMTL m_buffer;
     public:
-        IBO( BufferMTL&& _buffer ) : m_buffer( std::move(_buffer) ) {
+        IBOMTL( BufferMTL&& _buffer ) : m_buffer( std::move(_buffer) ) {
+        }
+        virtual void setData( const void * _data, size_t _size, size_t _offset) override;
+        virtual void release() override {
+            delete this;
+        }
+        virtual size_t getSize() override {
+            return m_buffer.buffer().length;
+        }
+        virtual BufferType getType() override {
+            return IBO;
         }
     };
     

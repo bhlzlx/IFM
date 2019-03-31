@@ -25,6 +25,7 @@ namespace Ks {
         SwapchainMTL m_swapchain;
         //
         GraphicsQueue m_graphicsQueue; // initialize with swapchain
+        UploadQueue m_uploadQueue; // 
         RenderPassSwapchain m_mainRenderPass; // initialize with swapchain
         //
         id<MTLRenderCommandEncoder> m_renderEncoder;
@@ -46,6 +47,9 @@ namespace Ks {
         //
         GraphicsQueue& getGraphicsQueue() {
             return m_graphicsQueue;
+        }
+        UploadQueue& getUploadQueue() {
+            return m_uploadQueue;
         }
         
         RenderPassSwapchain& getMainRenderPass() {
