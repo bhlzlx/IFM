@@ -132,5 +132,160 @@ namespace Ks {
         return false;
     }
     
-    //MTLStoreAction
+    MTLVertexFormat VertexFormatToMTL( VertexType _vtType ) {
+        switch( _vtType ){
+            case VertexTypeFloat1:
+                return MTLVertexFormatFloat;
+            case VertexTypeFloat2:
+                return MTLVertexFormatFloat2;
+            case VertexTypeFloat3:
+                return MTLVertexFormatFloat3;
+            case VertexTypeFloat4:
+                return MTLVertexFormatFloat4;
+            case VertexTypeHalf2:
+                return MTLVertexFormatHalf2;
+            case VertexTypeHalf4:
+                return MTLVertexFormatHalf4;
+            case VertexTypeUByte4:
+                return MTLVertexFormatUChar4;
+            case VertexTypeUByte4N:
+                return MTLVertexFormatUChar4Normalized;
+        }
+        return MTLVertexFormatInvalid;
+    }
+    
+    static inline MTLSamplerMipFilter MipmapFilerToMTL( TextureFilter _filter)
+    {
+        switch (_filter)
+        {
+            case TexFilterNone:
+            case TexFilterPoint:
+                return MTLSamplerMipFilterNearest;
+            case TexFilterLinear:
+                return MTLSamplerMipFilterLinear;
+        }
+        return MTLSamplerMipFilterNotMipmapped;
+    }
+    
+    static inline MTLCullMode CullModeToMTL( CullMode _mode)
+    {
+        switch (_mode)
+        {
+            case None:
+                return MTLCullModeNone;
+            case Back:
+                return MTLCullModeBack;
+            case Front:
+                return MTLCullModeFront;
+            case FrontAndBack:
+                return MTLCullModeFront;
+        }
+        return MTLCullModeNone;
+    }
+    
+    static inline MTLPrimitiveType TopologyToMTL( TopologyMode _mode )
+    {
+        switch (_mode)
+        {
+            case TMPoints: return MTLPrimitiveTypePoint;
+            case TMLineStrip: return MTLPrimitiveTypeLineStrip;
+            case TMLineList: return MTLPrimitiveTypeLine;
+            case TMTriangleStrip: return MTLPrimitiveTypeTriangleStrip;
+            case TMTriangleList: return MTLPrimitiveTypeTriangle;
+            default:
+                break;
+        }
+        return MTLPrimitiveTypeTriangle;
+    }
+    
+    static inline MTLPrimitiveTopologyClass TopolygyPolygonModeMTL( TopologyMode _mode )
+    {
+        switch (_mode)
+        {
+            case TMPoints:
+                return MTLPrimitiveTopologyClassPoint;
+            case TMLineStrip:
+            case TMLineList:
+                return MTLPrimitiveTopologyClassLine;
+            case TMTriangleStrip:
+            case TMTriangleList:
+            case TMTriangleFan:
+                return MTLPrimitiveTopologyClassTriangle;
+            case TMCount:
+                break;
+        }
+        return MTLPrimitiveTopologyClassTriangle;
+    }
+    
+    static inline MTLWinding FrontFaceToMTL( WindingMode _mode)
+    {
+        switch (_mode)
+        {
+            case Clockwise: return MTLWindingClockwise;
+            case CounterClockwise: return MTLWindingCounterClockwise;
+        }
+        return MTLWindingCounterClockwise;
+    }
+    
+    static inline MTLCompareFunction CompareFunctionToMTL( CompareFunction _op)
+    {
+        switch (_op)
+        {
+            case Never: return MTLCompareFunctionNever;
+            case Less: return MTLCompareFunctionLess;
+            case Equal: return MTLCompareFunctionEqual;
+            case LessEqual: return MTLCompareFunctionLessEqual;
+            case Greater: return MTLCompareFunctionGreater;
+            case GreaterEqual: return MTLCompareFunctionGreaterEqual;
+            case Always: return MTLCompareFunctionAlways;
+        }
+        //VK_COMPARE_OP_NOT_EQUAL
+        return MTLCompareFunctionAlways;
+    }
+    
+    static inline MTLStencilOperation StencilOpToMTL( StencilOperation _op)
+    {
+        switch (_op)
+        {
+            case StencilOpKeep:return MTLStencilOperationKeep;
+            case StencilOpZero: return MTLStencilOperationZero;
+            case StencilOpReplace: return MTLStencilOperationReplace;
+            case StencilOpIncrSat:return MTLStencilOperationIncrementClamp;
+            case StencilOpDecrSat:return MTLStencilOperationDecrementClamp;
+            case StencilOpInvert:return MTLStencilOperationInvert;
+            case StencilOpInc:return MTLStencilOperationIncrementWrap;
+            case StencilOpDec:return MTLStencilOperationDecrementWrap;
+        }
+        return MTLStencilOperationKeep;
+    }
+    
+    static inline MTLBlendFactor BlendFactorToMTL( BlendFactor _factor)
+    {
+        switch (_factor)
+        {
+            case Zero: return MTLBlendFactorZero;
+            case One: return MTLBlendFactorOne;
+            case SourceColor: return MTLBlendFactorSourceColor;
+            case InvertSourceColor: return MTLBlendFactorOneMinusSourceColor;
+            case SourceAlpha: return MTLBlendFactorSourceAlpha;
+            case InvertSourceAlpha: return MTLBlendFactorOneMinusSourceAlpha;
+            case DestinationColor: return MTLBlendFactorDestinationColor;
+            case InvertDestinationColor: return MTLBlendFactorOneMinusDestinationColor;
+            case DestinationAlpha: return MTLBlendFactorDestinationAlpha;
+            case InvertDestinationAlpha: return MTLBlendFactorOneMinusDestinationAlpha;
+            case SourceAlphaSat: return MTLBlendFactorSourceAlphaSaturated;
+        }
+        return MTLBlendFactorOne;
+    }
+    
+    static inline MTLBlendOperation BlendOpToMTL( BlendOperation _op)
+    {
+        switch (_op)
+        {
+            case BlendOpAdd: return MTLBlendOperationAdd;
+            case BlendOpSubtract: return MTLBlendOperationSubstract;
+            case BlendOpRevsubtract: return MTLBlendOperationReverseSubtract;
+        }
+        return MTLBlendOperationAdd;
+    }
 }

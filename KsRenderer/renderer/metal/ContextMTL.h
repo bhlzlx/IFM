@@ -21,6 +21,7 @@ namespace Ks {
     class ContextMTL : public IContext {
     private:
         id<MTLDevice> m_device;
+        Ks::IArch* m_archieve;
         CAMetalLayer* m_metalLayer;
         SwapchainMTL m_swapchain;
         //
@@ -76,6 +77,9 @@ namespace Ks {
         }
         id<MTLDevice> getDevice() {
             return m_device;
+        }
+        Ks::IArch* archieve() {
+            return m_archieve;
         }
     };
 }

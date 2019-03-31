@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F632BEC22510D36007FE762 /* metal.md in Resources */ = {isa = PBXBuildFile; fileRef = 2F632BEB22510D36007FE762 /* metal.md */; };
+		2F632BEF22510EF8007FE762 /* ShaderModuleMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F632BED22510EF8007FE762 /* ShaderModuleMTL.mm */; };
+		2F632BF022510EF8007FE762 /* ShaderModuleMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F632BEE22510EF8007FE762 /* ShaderModuleMTL.h */; };
+		2F632BF322511046007FE762 /* PipelineMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F632BF122511046007FE762 /* PipelineMTL.mm */; };
+		2F632BF422511046007FE762 /* PipelineMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F632BF222511046007FE762 /* PipelineMTL.h */; };
 		2FC48038224F87D7006BA3D1 /* MTLTypeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48024224F87D7006BA3D1 /* MTLTypeMapping.h */; };
 		2FC48039224F87D7006BA3D1 /* ViewMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48025224F87D7006BA3D1 /* ViewMTL.h */; };
 		2FC4803A224F87D7006BA3D1 /* SwapchainMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48026224F87D7006BA3D1 /* SwapchainMTL.h */; };
@@ -29,6 +34,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F632BEB22510D36007FE762 /* metal.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = metal.md; sourceTree = "<group>"; };
+		2F632BED22510EF8007FE762 /* ShaderModuleMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ShaderModuleMTL.mm; sourceTree = "<group>"; };
+		2F632BEE22510EF8007FE762 /* ShaderModuleMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderModuleMTL.h; sourceTree = "<group>"; };
+		2F632BF122511046007FE762 /* PipelineMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PipelineMTL.mm; sourceTree = "<group>"; };
+		2F632BF222511046007FE762 /* PipelineMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PipelineMTL.h; sourceTree = "<group>"; };
 		2FC47FED224F86FF006BA3D1 /* KsRenderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsRenderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FC47FF1224F86FF006BA3D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FC48024224F87D7006BA3D1 /* MTLTypeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLTypeMapping.h; sourceTree = "<group>"; };
@@ -116,6 +126,11 @@
 				2FC48032224F87D7006BA3D1 /* ContextMTL.h */,
 				2FC4802F224F87D7006BA3D1 /* QueueMTL.h */,
 				2FC48033224F87D7006BA3D1 /* QueueMTL.mm */,
+				2F632BEB22510D36007FE762 /* metal.md */,
+				2F632BED22510EF8007FE762 /* ShaderModuleMTL.mm */,
+				2F632BEE22510EF8007FE762 /* ShaderModuleMTL.h */,
+				2F632BF122511046007FE762 /* PipelineMTL.mm */,
+				2F632BF222511046007FE762 /* PipelineMTL.h */,
 			);
 			path = metal;
 			sourceTree = "<group>";
@@ -139,6 +154,7 @@
 			files = (
 				2FC48048224F87D7006BA3D1 /* KsRenderer.h in Headers */,
 				2FC48049224F87D7006BA3D1 /* KsApplication.h in Headers */,
+				2F632BF422511046007FE762 /* PipelineMTL.h in Headers */,
 				2FC4804A224F87D7006BA3D1 /* KsDefine.h in Headers */,
 				2FC48042224F87D7006BA3D1 /* RenderPassMTL.h in Headers */,
 				2FC48038224F87D7006BA3D1 /* MTLTypeMapping.h in Headers */,
@@ -146,6 +162,7 @@
 				2FC48046224F87D7006BA3D1 /* ContextMTL.h in Headers */,
 				2FC48043224F87D7006BA3D1 /* QueueMTL.h in Headers */,
 				2FC48039224F87D7006BA3D1 /* ViewMTL.h in Headers */,
+				2F632BF022510EF8007FE762 /* ShaderModuleMTL.h in Headers */,
 				2FC4803E224F87D7006BA3D1 /* MetalInc.h in Headers */,
 				2FC48041224F87D7006BA3D1 /* TextureMTL.h in Headers */,
 				2FC4803A224F87D7006BA3D1 /* SwapchainMTL.h in Headers */,
@@ -209,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F632BEC22510D36007FE762 /* metal.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +243,8 @@
 				2FC48047224F87D7006BA3D1 /* QueueMTL.mm in Sources */,
 				2FC48045224F87D7006BA3D1 /* ContextMTL.mm in Sources */,
 				2FC48044224F87D7006BA3D1 /* RenderPassMTL.mm in Sources */,
+				2F632BF322511046007FE762 /* PipelineMTL.mm in Sources */,
+				2F632BEF22510EF8007FE762 /* ShaderModuleMTL.mm in Sources */,
 				2FC48040224F87D7006BA3D1 /* TextureMTL.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
