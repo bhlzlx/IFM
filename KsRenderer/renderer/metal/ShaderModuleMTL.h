@@ -16,11 +16,11 @@ namespace Ks {
         MTLFunctionType m_type;
     public:
         ShaderModuleMTL():
-            m_shaderModule( nil )
+            m_function( nil )
         {
         }
         id<MTLFunction> shader(){
-            return m_shaderModule;
+            return m_function;
         }
         
         // _shaderText : the shader program text content
