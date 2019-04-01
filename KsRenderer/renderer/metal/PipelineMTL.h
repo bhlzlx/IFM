@@ -12,14 +12,18 @@
 namespace Ks {
     
     class PipelineMTL : public IPipeline {
+        friend class ContextMTL;
     private:
+        // description
         PipelineDescription m_desc;
+        // core objects
         id<MTLRenderPipelineState> m_pipelineState;
         id<MTLDepthStencilState> m_depthStencilState;
+        // shader reflection
+        MTLRenderPipelineReflection* m_reflection;
     public:
         PipelineMTL(){
-        }
-        
+        }        
         virtual void begin() override;
         virtual void end() override;
         virtual void setViewport(const Viewport& _viewport) override;
@@ -34,6 +38,5 @@ namespace Ks {
         virtual IDrawable* createDrawable( const DrawableDescription& ) override;
         virtual const PipelineDescription& getDescription() override;
         virtual void release() override;
-    }
-    
+    };
 }

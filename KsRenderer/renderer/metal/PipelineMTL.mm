@@ -93,11 +93,19 @@ namespace Ks {
         depthStencilDescriptor.backFaceStencil.depthStencilPassOperation = StencilOpToMTL( _desc.renderState.stencilPassCCW );
         
         NSError* pipelinError = nil;
-        //
-        id<MTLRenderPipelineState> pipelineState = [m_device newRenderPipelineStateWithDescriptor:descriptor error:&pipelinError];
+        MTLRenderPipelineReflection * reflection = nil;
+        id<MTLRenderPipelineState> pipelineState = [
+                        m_device newRenderPipelineStateWithDescriptor:descriptor
+                                                    options:MTLPipelineOptionArgumentInfo | MTLPipelineOptionBufferTypeInfo
+                                                    reflection:&reflection
+                                                    error:&pipelinError];
         id<MTLDepthStencilState> depthStencilState = [m_device newDepthStencilStateWithDescriptor:depthStencilDescriptor];
         
-        // to be continued...
+        PipelineMTL* pipeline = new PipelineMTL();
+        pipeline->m_pipelineState = pipelineState;
+        pipeline->m_depthStencilState = depthStencilState;
+        
+        return true;
     }
     
     void PipelineMTL::begin(){

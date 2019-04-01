@@ -283,7 +283,7 @@ namespace Ks {
         switch (_op)
         {
             case BlendOpAdd: return MTLBlendOperationAdd;
-            case BlendOpSubtract: return MTLBlendOperationSubstract;
+            case BlendOpSubtract: return MTLBlendOperationSubtract;
             case BlendOpRevsubtract: return MTLBlendOperationReverseSubtract;
         }
         return MTLBlendOperationAdd;

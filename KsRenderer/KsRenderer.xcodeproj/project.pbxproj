@@ -31,6 +31,8 @@
 		2FC48048224F87D7006BA3D1 /* KsRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48035224F87D7006BA3D1 /* KsRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FC48049224F87D7006BA3D1 /* KsApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48036224F87D7006BA3D1 /* KsApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FC4804A224F87D7006BA3D1 /* KsDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48037224F87D7006BA3D1 /* KsDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FC8E78C2252653E00AAC990 /* ArgumentMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC8E78A2252653E00AAC990 /* ArgumentMTL.mm */; };
+		2FC8E78D2252653E00AAC990 /* ArgumentMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC8E78B2252653E00AAC990 /* ArgumentMTL.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		2FC48035224F87D7006BA3D1 /* KsRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KsRenderer.h; sourceTree = "<group>"; };
 		2FC48036224F87D7006BA3D1 /* KsApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KsApplication.h; sourceTree = "<group>"; };
 		2FC48037224F87D7006BA3D1 /* KsDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KsDefine.h; sourceTree = "<group>"; };
+		2FC8E78A2252653E00AAC990 /* ArgumentMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ArgumentMTL.mm; sourceTree = "<group>"; };
+		2FC8E78B2252653E00AAC990 /* ArgumentMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArgumentMTL.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,8 @@
 				2F632BEE22510EF8007FE762 /* ShaderModuleMTL.h */,
 				2F632BF122511046007FE762 /* PipelineMTL.mm */,
 				2F632BF222511046007FE762 /* PipelineMTL.h */,
+				2FC8E78A2252653E00AAC990 /* ArgumentMTL.mm */,
+				2FC8E78B2252653E00AAC990 /* ArgumentMTL.h */,
 			);
 			path = metal;
 			sourceTree = "<group>";
@@ -153,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC48048224F87D7006BA3D1 /* KsRenderer.h in Headers */,
+				2FC8E78D2252653E00AAC990 /* ArgumentMTL.h in Headers */,
 				2FC48049224F87D7006BA3D1 /* KsApplication.h in Headers */,
 				2F632BF422511046007FE762 /* PipelineMTL.h in Headers */,
 				2FC4804A224F87D7006BA3D1 /* KsDefine.h in Headers */,
@@ -243,6 +250,7 @@
 				2FC48047224F87D7006BA3D1 /* QueueMTL.mm in Sources */,
 				2FC48045224F87D7006BA3D1 /* ContextMTL.mm in Sources */,
 				2FC48044224F87D7006BA3D1 /* RenderPassMTL.mm in Sources */,
+				2FC8E78C2252653E00AAC990 /* ArgumentMTL.mm in Sources */,
 				2F632BF322511046007FE762 /* PipelineMTL.mm in Sources */,
 				2F632BEF22510EF8007FE762 /* ShaderModuleMTL.mm in Sources */,
 				2FC48040224F87D7006BA3D1 /* TextureMTL.mm in Sources */,
