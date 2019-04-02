@@ -39,6 +39,8 @@ namespace Ks {
             [m_transferBuffer commit];
             m_transferBuffer = nil;
         }
+        GetContext(context)
+        context->getTUBOAllocator().reset();
         m_renderBuffer = [m_queue commandBuffer];
         //
         return true;

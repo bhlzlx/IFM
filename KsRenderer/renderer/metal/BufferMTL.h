@@ -11,6 +11,7 @@
 
 namespace Ks {
     
+    class PipelineMTL;
     class BufferMTL {
     private:
         id<MTLBuffer> m_buffer;
@@ -52,6 +53,7 @@ namespace Ks {
     
     class SVBOMTL : public IStaticVertexBuffer {
     private:
+        friend class PipelineMTL;
         BufferMTL m_buffer;
     public:
         SVBOMTL( BufferMTL&& _buffer ) : m_buffer( std::move(_buffer) ) {
@@ -63,6 +65,7 @@ namespace Ks {
     };
     
     class DVBOMTL : public IDynamicVertexBuffer {
+        friend class PipelineMTL;
     private:
         BufferMTL m_buffer;
     public:
@@ -81,6 +84,7 @@ namespace Ks {
     };
     
     class IBOMTL : public IIndexBuffer {
+        friend class PipelineMTL;
     private:
         BufferMTL m_buffer;
     public:

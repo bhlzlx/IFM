@@ -11,6 +11,7 @@
 #include "ShaderModuleMTL.h"
 #include "MTLTypeMapping.h"
 #include "ArgumentMTL.h"
+#include "DrawableMTL.h"
 #include "ks/io/io.h"
 
 namespace Ks {
@@ -114,28 +115,66 @@ namespace Ks {
         auto encoder = context->getRenderCommandEncoder();
         [encoder setDepthStencilState: m_depthStencilState];
         [encoder setRenderPipelineState: m_pipelineState];
-        
+        [encoder setViewport:m_viewport];
+        [encoder setScissorRect:m_scissor];
+        [encoder setDepthBias:m_constantBias slopeScale:m_slopeScaleBias clamp:0.0f];
     }
     void PipelineMTL::end(){
-        
+        // do nothing
     }
     void PipelineMTL::setViewport(const Viewport& _viewport){
-
+        m_viewport.originX = _viewport.x;
+        m_viewport.originY = _viewport.y;
+        m_viewport.width = _viewport.width;
+        m_viewport.height = _viewport.height;
+        m_viewport.znear = _viewport.zNear;
+        m_viewport.zfar = _viewport.zFar;
     }
     void PipelineMTL::setScissor(const Scissor& _scissor){
-
+        m_scissor.x = _scissor.origin.x;
+        m_scissor.y = _scissor.origin.y;
+        m_scissor.height = _scissor.size.height;
+        m_scissor.width = _scissor.size.width;
     }
+    
     void PipelineMTL::draw( IDrawable* _drawable, TopologyMode _pmode, uint32_t _offset, uint32_t _verticesCount ){
-
+        GetContext( context )
+        auto encoder = context->getRenderCommandEncoder();
+        auto drawable = (DrawableMTL*)_drawable;
+        drawable->bind(encoder);
+        MTLPrimitiveType topology = TopologyToMTL( _pmode );
+        [encoder drawPrimitives:topology vertexStart:_offset vertexCount:_verticesCount];
     }
+    
     void PipelineMTL::drawIndexed(IDrawable* _drawable, TopologyMode _pmode, uint32_t _indicesCount ){
-
+        GetContext( context )
+        auto encoder = context->getRenderCommandEncoder();
+        auto drawable = (DrawableMTL*)_drawable;
+        drawable->bind(encoder);
+        MTLPrimitiveType topology = TopologyToMTL( _pmode );
+        [encoder drawIndexedPrimitives:topology indexCount:_indicesCount indexType:MTLIndexTypeUInt16 indexBuffer:drawable->indexBuffer() indexBufferOffset:0];
     }
+    
     void PipelineMTL::drawIndexed(IDrawable* _drawable, IIndexBuffer* _indexBuffer, TopologyMode _pmode, uint32_t _indicesCount){
-
+        GetContext( context )
+        auto encoder = context->getRenderCommandEncoder();
+        auto drawable = (DrawableMTL*)_drawable;
+        drawable->bind(encoder);
+        MTLPrimitiveType topology = TopologyToMTL( _pmode );
+        [encoder drawIndexedPrimitives:topology indexCount:_indicesCount indexType:MTLIndexTypeUInt16 indexBuffer:((IBOMTL*)_indexBuffer)->m_buffer.buffer() indexBufferOffset:0];
     }
     void PipelineMTL::drawIndexedInstanced(IDrawable* _drawable, TopologyMode _pmode, uint32_t _indicesCount, uint32_t _instanceCount ) {
-
+        GetContext( context )
+        auto encoder = context->getRenderCommandEncoder();
+        auto drawable = (DrawableMTL*)_drawable;
+        drawable->bind(encoder);
+        MTLPrimitiveType topology = TopologyToMTL( _pmode );
+        [encoder drawIndexedPrimitives:topology
+                            indexCount:_indicesCount
+                             indexType:MTLIndexTypeUInt16
+                           indexBuffer:drawable->indexBuffer()
+                     indexBufferOffset:0
+                         instanceCount:_indicesCount];
     }
     void PipelineMTL::setPolygonOffset(float _constantBias, float _slopeScaleBias){
 
@@ -193,8 +232,21 @@ namespace Ks {
     IArgument* PipelineMTL::createArgument(uint32_t _setId){
         return nullptr;
     }
-    IDrawable* PipelineMTL::createDrawable( const DrawableDescription& ){
-        return nullptr;
+    IDrawable* PipelineMTL::createDrawable( const DrawableDescription& _ddesc ){
+        DrawableMTL * drawable = new DrawableMTL();
+        for( int i = 0; i<_ddesc.bufferCount; ++i ) {
+            if( _ddesc.buffers[i]->getType()== BufferType::DVBO ) {
+                DVBOMTL * vbo = (DVBOMTL*)_ddesc.buffers[i];
+                drawable->m_vbo.push_back( vbo->m_buffer.buffer() );
+            }else if( _ddesc.buffers[i]->getType()== BufferType::SVBO ) {
+                SVBOMTL* vbo = (SVBOMTL*)_ddesc.buffers[i];
+                drawable->m_vbo.push_back( vbo->m_buffer.buffer() );
+            }
+        }
+        if(_ddesc.indexBuffer) {
+            drawable->m_ibo = ((IBOMTL*)_ddesc.indexBuffer)->m_buffer.buffer();
+        }
+        return drawable;
     }
     const PipelineDescription& PipelineMTL::getDescription(){
         return m_desc;

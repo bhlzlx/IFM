@@ -14,6 +14,8 @@
 		2F632BF422511046007FE762 /* PipelineMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F632BF222511046007FE762 /* PipelineMTL.h */; };
 		2F76A71B2253A29600842D40 /* UniformMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F76A7192253A29600842D40 /* UniformMTL.mm */; };
 		2F76A71C2253A29600842D40 /* UniformMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F76A71A2253A29600842D40 /* UniformMTL.h */; };
+		2F76A71F2253C03500842D40 /* DrawableMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F76A71D2253C03500842D40 /* DrawableMTL.mm */; };
+		2F76A7202253C03500842D40 /* DrawableMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F76A71E2253C03500842D40 /* DrawableMTL.h */; };
 		2FC48038224F87D7006BA3D1 /* MTLTypeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48024224F87D7006BA3D1 /* MTLTypeMapping.h */; };
 		2FC48039224F87D7006BA3D1 /* ViewMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48025224F87D7006BA3D1 /* ViewMTL.h */; };
 		2FC4803A224F87D7006BA3D1 /* SwapchainMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48026224F87D7006BA3D1 /* SwapchainMTL.h */; };
@@ -45,6 +47,8 @@
 		2F632BF222511046007FE762 /* PipelineMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PipelineMTL.h; sourceTree = "<group>"; };
 		2F76A7192253A29600842D40 /* UniformMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UniformMTL.mm; sourceTree = "<group>"; };
 		2F76A71A2253A29600842D40 /* UniformMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniformMTL.h; sourceTree = "<group>"; };
+		2F76A71D2253C03500842D40 /* DrawableMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DrawableMTL.mm; sourceTree = "<group>"; };
+		2F76A71E2253C03500842D40 /* DrawableMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawableMTL.h; sourceTree = "<group>"; };
 		2FC47FED224F86FF006BA3D1 /* KsRenderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsRenderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FC47FF1224F86FF006BA3D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FC48024224F87D7006BA3D1 /* MTLTypeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLTypeMapping.h; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				2FC8E78B2252653E00AAC990 /* ArgumentMTL.h */,
 				2F76A7192253A29600842D40 /* UniformMTL.mm */,
 				2F76A71A2253A29600842D40 /* UniformMTL.h */,
+				2F76A71D2253C03500842D40 /* DrawableMTL.mm */,
+				2F76A71E2253C03500842D40 /* DrawableMTL.h */,
 			);
 			path = metal;
 			sourceTree = "<group>";
@@ -169,6 +175,7 @@
 				2FC8E78D2252653E00AAC990 /* ArgumentMTL.h in Headers */,
 				2FC48049224F87D7006BA3D1 /* KsApplication.h in Headers */,
 				2F632BF422511046007FE762 /* PipelineMTL.h in Headers */,
+				2F76A7202253C03500842D40 /* DrawableMTL.h in Headers */,
 				2FC4804A224F87D7006BA3D1 /* KsDefine.h in Headers */,
 				2FC48042224F87D7006BA3D1 /* RenderPassMTL.h in Headers */,
 				2FC48038224F87D7006BA3D1 /* MTLTypeMapping.h in Headers */,
@@ -262,6 +269,7 @@
 				2F632BF322511046007FE762 /* PipelineMTL.mm in Sources */,
 				2F632BEF22510EF8007FE762 /* ShaderModuleMTL.mm in Sources */,
 				2FC48040224F87D7006BA3D1 /* TextureMTL.mm in Sources */,
+				2F76A71F2253C03500842D40 /* DrawableMTL.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

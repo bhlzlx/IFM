@@ -21,8 +21,13 @@ namespace Ks {
         // core objects
         id<MTLRenderPipelineState> m_pipelineState;
         id<MTLDepthStencilState> m_depthStencilState;
+        MTLViewport m_viewport;
+        MTLScissorRect m_scissor;
         // shader reflection
         MTLRenderPipelineReflection* m_reflection;
+        //
+        float m_constantBias;
+        float m_slopeScaleBias;
     public:
         PipelineMTL(){
         }        
