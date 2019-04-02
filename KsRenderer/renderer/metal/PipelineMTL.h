@@ -35,7 +35,7 @@ namespace Ks {
         virtual void drawIndexed(IDrawable* _drawable, IIndexBuffer* _indexBuffer, TopologyMode _pmode, uint32_t _indicesCount) override;
         virtual void drawIndexedInstanced(IDrawable* _drawable, TopologyMode _pmode, uint32_t _indicesCount, uint32_t _instanceCount) override;
         virtual void setPolygonOffset(float _constantBias, float _slopeScaleBias) override;
-        virtual IArgument* createArgument(const ArgumentDescriptionOGL& _desc) override;
+        virtual IArgument* createArgument(const ArgumentDescription& _desc) override;
         virtual IArgument* createArgument(uint32_t _setId) override;
         virtual IDrawable* createDrawable( const DrawableDescription& ) override;
         virtual const PipelineDescription& getDescription() override;

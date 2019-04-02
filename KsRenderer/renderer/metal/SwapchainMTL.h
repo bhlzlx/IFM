@@ -17,7 +17,7 @@ namespace Ks {
         id<CAMetalDrawable> m_currentDrawable;
         //
         dispatch_semaphore_t m_semaphore;
-
+        //
     public:
         bool initialize( CAMetalLayer* _layer );
         bool prepareFrame();

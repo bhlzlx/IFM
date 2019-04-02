@@ -11,6 +11,7 @@
 #include "QueueMTL.h"
 #include "SwapchainMTL.h"
 #include "RenderPassMTL.h"
+#include "UniformMTL.h"
 
 #define GetContext( _ctx ) auto _ctx = (ContextMTL*)GetContextMetal();
 
@@ -28,6 +29,7 @@ namespace Ks {
         GraphicsQueue m_graphicsQueue; // initialize with swapchain
         UploadQueue m_uploadQueue; // 
         RenderPassSwapchain m_mainRenderPass; // initialize with swapchain
+        TransientUniformAllocator m_tubollator[MaxFlightCount];
         //
         id<MTLRenderCommandEncoder> m_renderEncoder;
     public:
@@ -51,6 +53,9 @@ namespace Ks {
         }
         UploadQueue& getUploadQueue() {
             return m_uploadQueue;
+        }
+        TransientUniformAllocator& getTUBOAllocator() {
+            return m_tubollator[m_graphicsQueue.getFlightIndex()];
         }
         
         RenderPassSwapchain& getMainRenderPass() {

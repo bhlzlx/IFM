@@ -21,6 +21,8 @@ namespace Ks {
         m_uploadQueue.initialize( uploadQueue );
         //
         m_mainRenderPass.initialize( &m_swapchain );
+        for( auto & allocator : m_tubollator )
+            allocator.initialize();
         return true;
     }
     

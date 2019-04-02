@@ -54,6 +54,7 @@ namespace Ks {
         }];
         [m_renderBuffer commit];
         m_renderBuffer = nil;
+        m_flightIndex = (m_flightIndex + 1 )%3;
     }
 
     //void updateTexture( TextureMTL* _texture, const void * _data, size_t _length, const TextureRegion& _region, uint32_t _mipCount );
@@ -119,7 +120,7 @@ namespace Ks {
 #endif
         m_blitEncoder = [command blitCommandEncoder];
         BufferMTL* buffer = BufferMTL::createBuffer( _length, _data, BufferUsageUniform );
-        buffer->setData( _data, _length, 0);
+        buffer->setDataBlocked( _data, _length, 0);
         [m_blitEncoder copyFromBuffer:buffer->buffer() sourceOffset: 0 toBuffer: _buffer->buffer() destinationOffset:_offset size:_length];
         [m_blitEncoder endEncoding];
         m_blitEncoder = nil;
@@ -130,7 +131,7 @@ namespace Ks {
         id<MTLCommandBuffer> cmd = [m_queue commandBuffer];
         id<MTLBlitCommandEncoder> encoder = [cmd blitCommandEncoder];
         BufferMTL* stagingBuffer = BufferMTL::createBuffer( _length, _data, BufferUsageUniform );
-        stagingBuffer->setData( _data, _length, 0);
+        stagingBuffer->setDataBlocked( _data, _length, 0);
         [encoder copyFromBuffer:stagingBuffer->buffer() sourceOffset: 0 toBuffer: _buffer->buffer() destinationOffset:_offset size:_length];
         [encoder endEncoding];
         [cmd addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull) {
@@ -145,7 +146,7 @@ namespace Ks {
         id<MTLCommandBuffer> cmd = [m_queue commandBuffer];
         id<MTLBlitCommandEncoder> encoder = [cmd blitCommandEncoder];
         BufferMTL* stagingBuffer = BufferMTL::createBuffer( _length, _data, BufferUsageUniform );
-        stagingBuffer->setData( _data, _length, 0);
+        stagingBuffer->setDataBlocked( _data, _length, 0);
         //
         MTLPixelFormat pixelFormat = _texture->texture().pixelFormat;
         uint32_t bytesperRow = PixelBits( MTLFormatToKs(pixelFormat) ) * _region.size.width / 8;

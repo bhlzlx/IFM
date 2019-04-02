@@ -14,10 +14,13 @@ namespace Ks {
     class BufferMTL {
     private:
         id<MTLBuffer> m_buffer;
+        void * m_raw;
         BufferUsageFlagBits m_usage;
         BufferMTL( const BufferMTL& _buffer );
         BufferMTL& operator = ( const BufferMTL& _buffer );
     public:
+        BufferMTL() : m_buffer(nil), m_usage( BufferUsageUniform ) {
+        }
         BufferMTL( id<MTLBuffer> _buffer ) {
             m_buffer = _buffer;
         }
@@ -36,10 +39,9 @@ namespace Ks {
         void release() {
             delete this;
         }
-        //
-        void setData( const void * _data, size_t _length, size_t _offset );
-        void setDataCPUAccess( const void * _data, size_t _length, size_t _offset );
-        void setDataGPUAccess( const void * _data, size_t _length, size_t _offset );
+        
+        void setDataBlocked( const void * _data, size_t _length, size_t _offset );
+        void setDataQueued( const void * _data, size_t _length, size_t _offset );
         //
         static BufferMTL* createBuffer( size_t _size, const void * _data, BufferUsageFlagBits _usage );
         

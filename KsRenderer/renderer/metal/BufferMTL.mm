@@ -33,15 +33,15 @@ namespace Ks {
     }
     
     void IBOMTL::setData( const void * _data, size_t _size, size_t _offset) {
-        m_buffer.setDataCPUAccess(_data, _size, _offset);
+        m_buffer.setDataQueued(_data, _size, _offset);
     }
     
     void DVBOMTL::setData( const void * _data, size_t _size, size_t _offset) {
-        m_buffer.setDataCPUAccess(_data, _size, _offset);
+        m_buffer.setDataQueued(_data, _size, _offset);
     }
     
     void SVBOMTL::setData( const void * _data, size_t _size, size_t _offset) {
-        m_buffer.setDataGPUAccess( _data, _size, _offset);
+        m_buffer.setDataQueued( _data, _size, _offset);
     }
     
     void SVBOMTL::release() {
@@ -80,29 +80,19 @@ namespace Ks {
         BufferMTL* buffer= new BufferMTL( bufferMtl );
         //context->getUploadQueue().uploadBuffer( buffer, 0, _data, _size);
         buffer->m_usage = _usage;
+        buffer->m_raw = buffer->m_buffer.contents;
         return buffer;
     }
     
-    void BufferMTL::setData( const void * _data, size_t _length, size_t _offset ){
-        switch (m_usage) {
-            case BufferUsageStaticVBO:
-            case BufferUsageIBO:
-            case BufferUsageSSBO:
-                setDataGPUAccess( _data, _length, _offset);
-                break;
-            case BufferUsageUniform:
-            case BufferUsageDynamicVBO:
-                setDataCPUAccess( _data, _length, _offset);
-                break;
-            default:
-                break;
+    void BufferMTL::setDataBlocked( const void * _data, size_t _length, size_t _offset ) {
+        if( m_raw ) {
+            memcpy((uint8_t*)m_raw + _offset, _data, _length);
+        }else{
+            GetContext(context)
+            context->getUploadQueue().uploadBuffer( this, _offset, _data, _length);
         }
     }
-    
-    void BufferMTL::setDataCPUAccess( const void * _data, size_t _length, size_t _offset ) {
-        memcpy((uint8_t*)m_buffer.contents + _offset, _data, _length);
-    }
-    void BufferMTL::setDataGPUAccess( const void * _data, size_t _length, size_t _offset ) {
+    void BufferMTL::setDataQueued( const void * _data, size_t _length, size_t _offset ) {
         GetContext(context)
         context->getGraphicsQueue().updateBuffer( this, _offset, _data, _length);
     }

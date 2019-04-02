@@ -558,7 +558,7 @@ namespace Ks{
 		virtual void setPolygonOffset(float _constantBias, float _slopeScaleBias) = 0;
 
 		//virtual void bindDrawable(IDrawable* _drawable) = 0;
-		virtual IArgument* createArgument(const ArgumentDescriptionOGL& _desc) = 0;
+		virtual IArgument* createArgument(const ArgumentDescription& _desc) = 0;
 		virtual IArgument* createArgument(uint32_t _setId) = 0;
 		virtual IDrawable* createDrawable( const DrawableDescription& ) = 0;
 		virtual const PipelineDescription& getDescription() = 0;

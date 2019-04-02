@@ -188,11 +188,13 @@ namespace Ks {
                 }
             }
         }
+        return argument;
     }
     IArgument* PipelineMTL::createArgument(uint32_t _setId){
         return nullptr;
     }
     IDrawable* PipelineMTL::createDrawable( const DrawableDescription& ){
+        return nullptr;
     }
     const PipelineDescription& PipelineMTL::getDescription(){
         return m_desc;

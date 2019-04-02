@@ -138,9 +138,11 @@ namespace Ks {
     }
     void ArgumentMTL::setUniform(UniformSlot _slot, const void * _data, size_t _size) {
         // dynamic allocation, static alloc ? dynamic alloc ? argument buffer??
-        // ...
-        uint8_t * ptr = (uint8_t*)m_vecUniforms[_slot.mtlIndex].buffer.contents;
-        ptr += m_vecUniforms[_slot.mtlIndex].offset;
+        GetContext(context);
+        auto & uniformItem = m_vecUniforms[_slot.mtlIndex];
+        context->getTUBOAllocator().allocate( uniformItem.size, uniformItem.offset, &uniformItem.buffer );
+        uint8_t * ptr = (uint8_t*)uniformItem.buffer.contents;
+        ptr += uniformItem.offset;
         memcpy( ptr, _data, _size );
     }
     void ArgumentMTL::release() {

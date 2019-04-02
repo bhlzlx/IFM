@@ -15,13 +15,18 @@ namespace Ks {
         id<MTLCommandBuffer> m_renderBuffer;
         //
         SwapchainMTL* m_swapchain;
+        uint32_t m_flightIndex;
         //
         bool m_enterFrame;
     public:
         GraphicsQueue() :
         m_queue(nil)
         ,m_transferBuffer(nil)
+        ,m_blitEncoder(nil)
         ,m_renderBuffer(nil)
+        ,m_swapchain(nil)
+        ,m_flightIndex(0)
+        ,m_enterFrame(false)
         {
         }
         
@@ -35,6 +40,9 @@ namespace Ks {
         void updateTexture( TextureMTL* _texture, const void * _data, size_t _length, const TextureRegion& _region, uint32_t _mipCount );
         //
         void updateBuffer( BufferMTL* _buffer, size_t _offset, const void * _data, size_t _length );
+        uint32_t getFlightIndex() {
+            return m_flightIndex;
+        }
     };
     
     class UploadQueue {
