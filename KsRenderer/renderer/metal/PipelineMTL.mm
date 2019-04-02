@@ -10,6 +10,7 @@
 #include "ContextMTL.h"
 #include "ShaderModuleMTL.h"
 #include "MTLTypeMapping.h"
+#include "ArgumentMTL.h"
 #include "ks/io/io.h"
 
 namespace Ks {
@@ -105,10 +106,14 @@ namespace Ks {
         pipeline->m_pipelineState = pipelineState;
         pipeline->m_depthStencilState = depthStencilState;
         
-        return true;
+        return pipeline;
     }
     
     void PipelineMTL::begin(){
+        GetContext( context )
+        auto encoder = context->getRenderCommandEncoder();
+        [encoder setDepthStencilState: m_depthStencilState];
+        [encoder setRenderPipelineState: m_pipelineState];
         
     }
     void PipelineMTL::end(){
@@ -135,19 +140,64 @@ namespace Ks {
     void PipelineMTL::setPolygonOffset(float _constantBias, float _slopeScaleBias){
 
     }
-    IArgument* PipelineMTL::createArgument(const ArgumentDescriptionOGL& _desc){
-
+    IArgument* PipelineMTL::createArgument(const ArgumentDescription& _desc) {
+        ArgumentMTL* argument = new ArgumentMTL();
+        for( uint32_t i = 0; i < _desc.samplerCount ; ++i){
+            const char * samplerName = _desc.samplerNames[i];
+            for ( MTLArgument* arg in m_reflection.vertexArguments ) {
+                if([arg.name isEqualToString:[NSString stringWithUTF8String: samplerName]]) {
+                    ArgumentMTL::SamplerItem item;
+                    item.samplerIndex = (uint32_t)arg.index;
+                    item.samplerState = nil;
+                    item.texture = nil;
+                    item.type = MTLFunctionTypeVertex;
+                    argument->m_vecSamplers.push_back(item);
+                }
+            }
+            for ( MTLArgument* arg in m_reflection.fragmentArguments ) {
+                if([arg.name isEqualToString:[NSString stringWithUTF8String: samplerName]]) {
+                    ArgumentMTL::SamplerItem item;
+                    item.samplerIndex = (uint32_t)arg.index;
+                    item.samplerState = nil;
+                    item.texture = nil;
+                    item.type = MTLFunctionTypeFragment;
+                    argument->m_vecSamplers.push_back(item);
+                }
+            }
+        }
+        for(uint32_t i = 0; i< _desc.uboCount; ++i ){
+            const char * uboName = _desc.uboNames[i];
+            for ( MTLArgument* arg in m_reflection.vertexArguments ) {
+                if([arg.name isEqualToString:[NSString stringWithUTF8String: uboName]]) {
+                    ArgumentMTL::UniformItem item;
+                    item.uniformIndex = (uint32_t)arg.index;
+                    item.buffer = nil;
+                    item.offset = 0;
+                    item.type = MTLFunctionTypeVertex;
+                    argument->m_vecUniforms.push_back(item);
+                }
+            }
+            for ( MTLArgument* arg in m_reflection.fragmentArguments ) {
+                if([arg.name isEqualToString:[NSString stringWithUTF8String: uboName]]) {
+                    ArgumentMTL::UniformItem item;
+                    item.uniformIndex = (uint32_t)arg.index;
+                    item.buffer = nil;
+                    item.offset = 0;
+                    item.type = MTLFunctionTypeFragment;
+                    argument->m_vecUniforms.push_back(item);
+                }
+            }
+        }
     }
     IArgument* PipelineMTL::createArgument(uint32_t _setId){
-
+        return nullptr;
     }
     IDrawable* PipelineMTL::createDrawable( const DrawableDescription& ){
-
     }
     const PipelineDescription& PipelineMTL::getDescription(){
-
+        return m_desc;
     }
     void PipelineMTL::release(){
-
+        delete this;
     }
 }

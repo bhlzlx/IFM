@@ -11,8 +11,10 @@
 
 namespace Ks {
     
+    class ArgumentMTL;
     class PipelineMTL : public IPipeline {
         friend class ContextMTL;
+        friend class ArgumentMTL;
     private:
         // description
         PipelineDescription m_desc;

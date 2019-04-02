@@ -154,7 +154,19 @@ namespace Ks {
         return MTLVertexFormatInvalid;
     }
     
-    static inline MTLSamplerMipFilter MipmapFilerToMTL( TextureFilter _filter)
+    static inline MTLSamplerMinMagFilter MinMagFilterToMTL( TextureFilter _filter ) {
+        switch (_filter)
+        {
+            case TexFilterNone:
+            case TexFilterPoint:
+                return MTLSamplerMinMagFilterNearest;
+            case TexFilterLinear:
+                return MTLSamplerMinMagFilterLinear;
+        }
+        return MTLSamplerMinMagFilterNearest;
+    }
+    
+    static inline MTLSamplerMipFilter MipmapFilterToMTL( TextureFilter _filter)
     {
         switch (_filter)
         {
@@ -165,6 +177,18 @@ namespace Ks {
                 return MTLSamplerMipFilterLinear;
         }
         return MTLSamplerMipFilterNotMipmapped;
+    }
+
+    inline MTLSamplerAddressMode AddressModeToMTL( AddressMode _mode ) {
+        switch( _mode ) {
+            case AddressModeWrap:
+                return MTLSamplerAddressModeRepeat;
+            case AddressModeClamp:
+                return MTLSamplerAddressModeClampToEdge;
+            case AddressModeMirror:
+                return MTLSamplerAddressModeMirrorRepeat;
+        }
+        return MTLSamplerAddressModeRepeat;
     }
     
     static inline MTLCullMode CullModeToMTL( CullMode _mode)

@@ -8,12 +8,15 @@
 
 #pragma once
 #include "MetalInc.h"
+#include <vector>
 
 namespace Ks {
     
     class PipelineMTL;
     class ArgumentMTL : public IArgument {
+        friend class PipelineMTL;
     private:
+        PipelineMTL* m_pipeline;
         struct SamplerItem{
             MTLFunctionType type;
             uint32_t samplerIndex;
@@ -28,12 +31,15 @@ namespace Ks {
             uint32_t offset;
             uint32_t size;
         };
-        // MTLRenderCommandEncoder set
+        //
+        std::vector< SamplerItem > m_vecSamplers;
+        std::vector< UniformItem > m_vecUniforms;
     public:
         virtual UniformSlot getUniformSlot(const char * _name) override;
         virtual SamplerSlot getSamplerSlot(const char * _name) override;
         virtual void setSampler(SamplerSlot _slot, const SamplerState& _sampler, const ITexture* _texture) override;
         virtual void setUniform(UniformSlot _slot, const void * _data, size_t _size) override;
+        virtual void bind() override;
         virtual void release() override;
     };
     

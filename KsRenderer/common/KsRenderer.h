@@ -371,7 +371,7 @@ namespace Ks{
         UBO,
     };
 
-	struct ArgumentDescriptionOGL {
+	struct ArgumentDescription {
 		const char** uboNames;
 		int uboCount;
 		const char** samplerNames;
@@ -494,10 +494,7 @@ namespace Ks{
 			uint32_t vkSet;
 			uint32_t vkBinding;
 		};
-        struct {
-            uint32_t mtlShaderType;
-            uint32_t mtlIndex;
-        };
+        uint32_t mtlIndex;
 	} SamplerSlot ;
 
 	typedef union {
@@ -510,7 +507,7 @@ namespace Ks{
 			uint16_t vkUBOOffset;
 			uint16_t vkUBOSize; // unused : default 0
 		};
-        //uint32_t 
+        uint32_t mtlIndex;
 	} UniformSlot;
 
 	class KS_API_DECL IArgument {
