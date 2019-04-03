@@ -7,8 +7,23 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ks/io/io.h"
+#import <KsRenderer/KsRenderer.h>
+#include <QuartzCore/CAMetalLayer.h>
+#import "KsView.h"
+#import "Triangle.h"
 
-/*@interface ViewController : NSViewController
+@interface ViewController : NSViewController
+{
+    __weak CAMetalLayer* _metalLayer;
+    KsView* _view;
+    CVDisplayLinkRef _displayLink;
+    Ks::Size<uint32_t> _gameViewSize;
+    KsApplication* _application;
+    //
+    Ks::IArch* _archieve;
+    Ks::Viewport _viewport;
+    Ks::Scissor _scissor;
+}
 
-@end*/
-
+@end

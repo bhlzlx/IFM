@@ -7,9 +7,12 @@
 //
 
 #include "ContextMTL.h"
+#include "TextureMTL.h"
+#include "RenderPassMTL.h"
 
 namespace Ks {
     bool ContextMTL::initialize( Ks::IArch* _arch, void* _wnd ) {
+        m_archieve = _arch;
         m_device = MTLCreateSystemDefaultDevice();
         m_metalLayer = (__bridge __weak CAMetalLayer*)(_wnd);
         m_metalLayer.device = m_device;
@@ -26,18 +29,6 @@ namespace Ks {
         return true;
     }
     
-    ITexture* ContextMTL::createTexture(const TextureDescription& _desc, TextureUsageFlags _usage ) {
-        return nullptr;
-    }
-    IAttachment* ContextMTL::createAttachment(KsFormat _format) {
-        return nullptr;
-    }
-    IRenderPass* ContextMTL::createRenderPass( const RenderPassDescription& _desc, IAttachment** _colorAttachments, IAttachment* _depthStencil ) {
-        return nullptr;
-    }
-    IPipeline* ContextMTL::createPipeline( const PipelineDescription& _desc ) {
-        return nullptr;
-    }
     KsFormat ContextMTL::swapchainFormat() const {
         return KsBGRA8888_UNORM;
     }

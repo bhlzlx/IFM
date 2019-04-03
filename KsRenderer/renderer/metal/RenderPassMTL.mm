@@ -4,6 +4,27 @@
 #include "MTLTypeMapping.h"
 
 namespace Ks {
+    IAttachment* ContextMTL::createAttachment(KsFormat _format) {
+        AttachmentMTL* attachment = new AttachmentMTL( _format );
+        return attachment;
+    }
+    
+    IRenderPass* ContextMTL::createRenderPass(const RenderPassDescription &_desc, IAttachment **_colorAttachments, IAttachment *_depthStencil) {
+        return RenderPassMTL::createRenderPass(_desc, _colorAttachments, _depthStencil);
+    }
+    
+    RenderPassMTL* RenderPassMTL::createRenderPass(const RenderPassDescription &_desc, IAttachment **_colorAttachments, IAttachment *_depthStencil) {
+        RenderPassMTL* renderPass = new RenderPassMTL();
+        renderPass->m_desc = _desc;
+        for( uint32_t i = 0; i<_desc.colorAttachmentCount; ++i) {
+            renderPass->m_colorAttachment[i] = (AttachmentMTL*)_colorAttachments[i];
+        }
+        renderPass->m_depthStencil = (AttachmentMTL*)_depthStencil;
+        renderPass->m_clearDepth = 1.0;
+        renderPass->m_clearStencil = 0xff;
+        renderPass->m_size = {0 , 0};
+        return renderPass;
+    }
     
     void AttachmentMTL::resize( uint32_t _width, uint32_t _height ) {
         if( m_size.width != _width || m_size.height != _height ) {
@@ -34,8 +55,6 @@ namespace Ks {
     KsFormat AttachmentMTL::getFormat() const {
         return m_format;
     }
-    
-    //
     
     bool RenderPassMTL::begin(uint32_t _width, uint32_t _height) {
         if( m_size.width != _width || m_size.height != _height ) {

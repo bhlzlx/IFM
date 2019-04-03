@@ -20,5 +20,4 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) setupMetalLayer;
 
 @end
-
 NS_ASSUME_NONNULL_END

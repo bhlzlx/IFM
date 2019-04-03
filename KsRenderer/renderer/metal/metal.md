@@ -13,10 +13,12 @@ Uniform
 Pipeline  
 Drawable  
 
+complete triangle test   
+
 ------------------------   
 
 # incomplete :
 
-test!!!!!!!!!!!!
+ssao test
 
 compression texture format 

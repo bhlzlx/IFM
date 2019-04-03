@@ -13,6 +13,9 @@ namespace Ks
         TextureMTL* m_texture;
         Size<uint32_t> m_size;
     public:
+        AttachmentMTL( KsFormat _format ) {
+            m_format = _format;
+        }
         void resize( uint32_t _width, uint32_t _height ) override;
         const ITexture* getTexture() const override;
         void release() override;
@@ -38,12 +41,15 @@ namespace Ks
         }
         
         bool begin(uint32_t _width, uint32_t _height) override;
-        
+
         void end() override;
         
         void release() override;
         
         void setClear(const Ks::RpClear &_clear) override;
+        
+        
+        static RenderPassMTL* createRenderPass(const RenderPassDescription &_desc, IAttachment **_colorAttachments, IAttachment *_depthStencil);
         
     };
     

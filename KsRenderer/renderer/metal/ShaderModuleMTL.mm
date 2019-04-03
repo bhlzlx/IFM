@@ -20,7 +20,11 @@ namespace Ks {
         if( nil == library ) {
             return false;
         }
-        id<MTLFunction> func = [library newFunctionWithName:@"main"];
+        id<MTLFunction> func = nil;
+        if( _type == MTLFunctionTypeVertex )
+            func = [library newFunctionWithName:@"vertex_main"];
+        else if( _type == MTLFunctionTypeFragment )
+            func = [library newFunctionWithName:@"fragment_main"];
         if( nil == func ){
             return false;
         }

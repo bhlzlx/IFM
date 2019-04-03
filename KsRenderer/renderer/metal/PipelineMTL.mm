@@ -46,9 +46,10 @@ namespace Ks {
         }
         for( uint32_t bufferIndex = 0; bufferIndex<_desc.vertexLayout.vertexBufferCount; ++bufferIndex){
             vertexDescriptor.layouts[bufferIndex].stride = _desc.vertexLayout.vertexBuffers[bufferIndex].stride;
-            vertexDescriptor.layouts[bufferIndex].stepRate = _desc.vertexLayout.vertexBuffers[bufferIndex].rate;
+            vertexDescriptor.layouts[bufferIndex].stepRate = _desc.vertexLayout.vertexBuffers[bufferIndex].rate < 1 ? 1 : _desc.vertexLayout.vertexBuffers[bufferIndex].rate;
             vertexDescriptor.layouts[bufferIndex].stepFunction = _desc.vertexLayout.vertexBuffers[bufferIndex].instanceMode ? MTLVertexStepFunctionPerInstance : MTLVertexStepFunctionPerVertex;
         }
+        descriptor.vertexDescriptor = vertexDescriptor;
         //descriptor.vertexBuffers;
         //descriptor.fragmentBuffers;
         // render pass descriptioin
@@ -84,16 +85,17 @@ namespace Ks {
         MTLDepthStencilDescriptor* depthStencilDescriptor = [[MTLDepthStencilDescriptor alloc] init];
         depthStencilDescriptor.depthCompareFunction = CompareFunctionToMTL(_desc.renderState.depthFunction);
         depthStencilDescriptor.depthWriteEnabled = _desc.renderState.depthWriteEnable;
-        depthStencilDescriptor.frontFaceStencil.writeMask = depthStencilDescriptor.frontFaceStencil.readMask = _desc.renderState.stencilMask;
-        depthStencilDescriptor.frontFaceStencil.stencilCompareFunction = CompareFunctionToMTL( _desc.renderState.stencilFunction );
-        depthStencilDescriptor.frontFaceStencil.stencilFailureOperation = StencilOpToMTL( _desc.renderState.stencilFail );
-        depthStencilDescriptor.frontFaceStencil.depthStencilPassOperation = StencilOpToMTL( _desc.renderState.stencilPass );
-        //
-        depthStencilDescriptor.backFaceStencil.writeMask = depthStencilDescriptor.backFaceStencil.readMask = _desc.renderState.stencilMask;
-        depthStencilDescriptor.backFaceStencil.stencilCompareFunction = CompareFunctionToMTL( _desc.renderState.stencilFunction );
-        depthStencilDescriptor.backFaceStencil.stencilFailureOperation = StencilOpToMTL( _desc.renderState.stencilFailCCW );
-        depthStencilDescriptor.backFaceStencil.depthStencilPassOperation = StencilOpToMTL( _desc.renderState.stencilPassCCW );
-        
+        if( IsStencilFormat( _desc.renderPassDescription.depthStencil.format )) {
+            depthStencilDescriptor.frontFaceStencil.writeMask = depthStencilDescriptor.frontFaceStencil.readMask = _desc.renderState.stencilMask;
+            depthStencilDescriptor.frontFaceStencil.stencilCompareFunction = CompareFunctionToMTL( _desc.renderState.stencilFunction );
+            depthStencilDescriptor.frontFaceStencil.stencilFailureOperation = StencilOpToMTL( _desc.renderState.stencilFail );
+            depthStencilDescriptor.frontFaceStencil.depthStencilPassOperation = StencilOpToMTL( _desc.renderState.stencilPass );
+            //
+            depthStencilDescriptor.backFaceStencil.writeMask = depthStencilDescriptor.backFaceStencil.readMask = _desc.renderState.stencilMask;
+            depthStencilDescriptor.backFaceStencil.stencilCompareFunction = CompareFunctionToMTL( _desc.renderState.stencilFunction );
+            depthStencilDescriptor.backFaceStencil.stencilFailureOperation = StencilOpToMTL( _desc.renderState.stencilFailCCW );
+            depthStencilDescriptor.backFaceStencil.depthStencilPassOperation = StencilOpToMTL( _desc.renderState.stencilPassCCW );
+        }        
         NSError* pipelinError = nil;
         MTLRenderPipelineReflection * reflection = nil;
         id<MTLRenderPipelineState> pipelineState = [
@@ -106,6 +108,7 @@ namespace Ks {
         PipelineMTL* pipeline = new PipelineMTL();
         pipeline->m_pipelineState = pipelineState;
         pipeline->m_depthStencilState = depthStencilState;
+        pipeline->m_reflection = reflection;
         
         return pipeline;
     }
@@ -183,6 +186,7 @@ namespace Ks {
         ArgumentMTL* argument = new ArgumentMTL();
         for( uint32_t i = 0; i < _desc.samplerCount ; ++i){
             const char * samplerName = _desc.samplerNames[i];
+            bool found = false;
             for ( MTLArgument* arg in m_reflection.vertexArguments ) {
                 if([arg.name isEqualToString:[NSString stringWithUTF8String: samplerName]]) {
                     ArgumentMTL::SamplerItem item;
@@ -191,7 +195,12 @@ namespace Ks {
                     item.texture = nil;
                     item.type = MTLFunctionTypeVertex;
                     argument->m_vecSamplers.push_back(item);
+                    found = true;
+                    break;
                 }
+            }
+            if( found ) {
+                break;
             }
             for ( MTLArgument* arg in m_reflection.fragmentArguments ) {
                 if([arg.name isEqualToString:[NSString stringWithUTF8String: samplerName]]) {
@@ -201,11 +210,13 @@ namespace Ks {
                     item.texture = nil;
                     item.type = MTLFunctionTypeFragment;
                     argument->m_vecSamplers.push_back(item);
+                    break;
                 }
             }
         }
         for(uint32_t i = 0; i< _desc.uboCount; ++i ){
             const char * uboName = _desc.uboNames[i];
+            bool found = false;
             for ( MTLArgument* arg in m_reflection.vertexArguments ) {
                 if([arg.name isEqualToString:[NSString stringWithUTF8String: uboName]]) {
                     ArgumentMTL::UniformItem item;
@@ -214,8 +225,12 @@ namespace Ks {
                     item.offset = 0;
                     item.type = MTLFunctionTypeVertex;
                     argument->m_vecUniforms.push_back(item);
+                    found = true;
+                    break;
                 }
             }
+            if( found )
+                break;
             for ( MTLArgument* arg in m_reflection.fragmentArguments ) {
                 if([arg.name isEqualToString:[NSString stringWithUTF8String: uboName]]) {
                     ArgumentMTL::UniformItem item;
@@ -224,9 +239,11 @@ namespace Ks {
                     item.offset = 0;
                     item.type = MTLFunctionTypeFragment;
                     argument->m_vecUniforms.push_back(item);
+                    break;
                 }
             }
         }
+        argument->m_pipeline = this;
         return argument;
     }
     IArgument* PipelineMTL::createArgument(uint32_t _setId){

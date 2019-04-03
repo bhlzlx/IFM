@@ -5,35 +5,60 @@
 
 namespace Ks {
     
-    TextureMTL* TextureMTL::createTexture( const TextureDescription& _desc, id<MTLTexture> _texture ) {
+    ITexture* ContextMTL::createTexture(const TextureDescription& _desc, TextureUsageFlags _usage ) {
+        return TextureMTL::createTexture( _desc, _usage, nil );
+    }
+    
+    TextureMTL* TextureMTL::createTexture( const TextureDescription& _desc,TextureUsageFlags _usage, id<MTLTexture> _texture ) {
         GetContext(context);
+        MTLTextureUsage usage = MTLTextureUsageUnknown;
+        //MTLResourceOptions options = MTLCPUCacheModeDefaultCache;
+        if( _usage != 0 ) {
+            if( _usage & TextureUsageSampled ) {
+                usage |= ( MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite );
+            }
+            if( _usage & TextureUsageColorAttachment ) {
+                usage |= MTLTextureUsageRenderTarget;
+            }
+            if( _usage & TextureUsageDepthStencilAttachment ) {
+                usage |= MTLTextureUsageRenderTarget;
+            }
+            if( _usage & TextureUsageStorage ) {
+                usage |= MTLTextureUsagePixelFormatView;
+            }
+        }
+        else
+        {
+            usage = MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget;
+        }
+        
         MTLPixelFormat format = KsFormatToMTL( _desc.format );
         if( format == MTLPixelFormatInvalid )
             return nullptr;
-        MTLTextureDescriptor* descriptor = nil;
-        BOOL mipmapped =_desc.mipmapLevel == 1 ? NO : YES;
-        
-        if( _desc.type == TextureType::Texture2D ){
-            descriptor = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:format width:_desc.width height:_desc.height mipmapped: mipmapped];
-        }else if( _desc.type == TextureType::TextureCube ) {
-            descriptor = [MTLTextureDescriptor textureCubeDescriptorWithPixelFormat:format size:_desc.width mipmapped:mipmapped];
-        }else if( _desc.type == TextureType::Texture2DArray || _desc.type == TextureType::Texture3D ) {
-            descriptor = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:format width:_desc.width height:_desc.height mipmapped: mipmapped];
-            descriptor.arrayLength = _desc.depth;
-        }else if( _desc.type == TextureType::TextureCubeArray ){
-            descriptor = [MTLTextureDescriptor textureCubeDescriptorWithPixelFormat:format size:_desc.width mipmapped:mipmapped];
-            descriptor.arrayLength = _desc.depth;
-        }else {
-            assert(false);
-            return nullptr;
+        if( _texture == nil ) {
+            MTLTextureDescriptor* descriptor = nil;
+            BOOL mipmapped =_desc.mipmapLevel == 1 ? NO : YES;
+            if( _desc.type == TextureType::Texture2D ){
+                descriptor = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:format width:_desc.width height:_desc.height mipmapped: mipmapped];
+            }else if( _desc.type == TextureType::TextureCube ) {
+                descriptor = [MTLTextureDescriptor textureCubeDescriptorWithPixelFormat:format size:_desc.width mipmapped:mipmapped];
+            }else if( _desc.type == TextureType::Texture2DArray || _desc.type == TextureType::Texture3D ) {
+                descriptor = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:format width:_desc.width height:_desc.height mipmapped: mipmapped];
+                descriptor.arrayLength = _desc.depth;
+            }else if( _desc.type == TextureType::TextureCubeArray ){
+                descriptor = [MTLTextureDescriptor textureCubeDescriptorWithPixelFormat:format size:_desc.width mipmapped:mipmapped];
+                descriptor.arrayLength = _desc.depth;
+            }else {
+                assert(false);
+                return nullptr;
+            }
+            descriptor.mipmapLevelCount = _desc.mipmapLevel;
+            descriptor.resourceOptions = MTLResourceStorageModePrivate;
+            descriptor.usage = usage;
+            _texture = [context->getDevice() newTextureWithDescriptor:descriptor];
         }
-        descriptor.mipmapLevelCount = _desc.mipmapLevel;
-        descriptor.resourceOptions = MTLResourceStorageModePrivate;
-        descriptor.usage = MTLTextureUsageRenderTarget;
-        id<MTLTexture> texture = [context->getDevice() newTextureWithDescriptor:descriptor];
-        
         TextureMTL* newTexture = new TextureMTL();
-        newTexture->m_texture = texture;
+        newTexture->m_texture = _texture;
         newTexture->m_description = _desc;
         return newTexture;
     }

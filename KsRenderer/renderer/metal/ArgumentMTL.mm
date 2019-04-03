@@ -113,12 +113,12 @@ namespace Ks {
         for( auto & sampler : m_vecSamplers ) {
             if( sampler.type == MTLFunctionTypeVertex ) {
                 [encoder setVertexSamplerState: sampler.samplerState atIndex:sampler.samplerIndex];
-                [encoder setVertexTexture:sampler.texture atIndex:sampler.samplerIndex+1];
+                [encoder setVertexTexture:sampler.texture atIndex:sampler.samplerIndex];
             }
             else
             {
                 [encoder setFragmentSamplerState: sampler.samplerState atIndex:sampler.samplerIndex];
-                [encoder setFragmentTexture:sampler.texture atIndex:sampler.samplerIndex+1];
+                [encoder setFragmentTexture:sampler.texture atIndex:sampler.samplerIndex];
             }
         }
         for( auto & uniform : m_vecUniforms ) {

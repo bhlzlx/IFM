@@ -132,7 +132,7 @@ namespace Ks {
         return false;
     }
     
-    MTLVertexFormat VertexFormatToMTL( VertexType _vtType ) {
+    inline MTLVertexFormat VertexFormatToMTL( VertexType _vtType ) {
         switch( _vtType ){
             case VertexTypeFloat1:
                 return MTLVertexFormatFloat;
@@ -154,7 +154,7 @@ namespace Ks {
         return MTLVertexFormatInvalid;
     }
     
-    static inline MTLSamplerMinMagFilter MinMagFilterToMTL( TextureFilter _filter ) {
+    inline MTLSamplerMinMagFilter MinMagFilterToMTL( TextureFilter _filter ) {
         switch (_filter)
         {
             case TexFilterNone:
@@ -166,7 +166,7 @@ namespace Ks {
         return MTLSamplerMinMagFilterNearest;
     }
     
-    static inline MTLSamplerMipFilter MipmapFilterToMTL( TextureFilter _filter)
+    inline MTLSamplerMipFilter MipmapFilterToMTL( TextureFilter _filter)
     {
         switch (_filter)
         {
@@ -191,7 +191,7 @@ namespace Ks {
         return MTLSamplerAddressModeRepeat;
     }
     
-    static inline MTLCullMode CullModeToMTL( CullMode _mode)
+    inline MTLCullMode CullModeToMTL( CullMode _mode)
     {
         switch (_mode)
         {
@@ -207,7 +207,7 @@ namespace Ks {
         return MTLCullModeNone;
     }
     
-    static inline MTLPrimitiveType TopologyToMTL( TopologyMode _mode )
+    inline MTLPrimitiveType TopologyToMTL( TopologyMode _mode )
     {
         switch (_mode)
         {
@@ -222,7 +222,7 @@ namespace Ks {
         return MTLPrimitiveTypeTriangle;
     }
     
-    static inline MTLPrimitiveTopologyClass TopolygyPolygonModeMTL( TopologyMode _mode )
+    inline MTLPrimitiveTopologyClass TopolygyPolygonModeMTL( TopologyMode _mode )
     {
         switch (_mode)
         {
@@ -241,7 +241,7 @@ namespace Ks {
         return MTLPrimitiveTopologyClassTriangle;
     }
     
-    static inline MTLWinding FrontFaceToMTL( WindingMode _mode)
+    inline MTLWinding FrontFaceToMTL( WindingMode _mode)
     {
         switch (_mode)
         {
@@ -251,7 +251,7 @@ namespace Ks {
         return MTLWindingCounterClockwise;
     }
     
-    static inline MTLCompareFunction CompareFunctionToMTL( CompareFunction _op)
+    inline MTLCompareFunction CompareFunctionToMTL( CompareFunction _op)
     {
         switch (_op)
         {
@@ -267,7 +267,7 @@ namespace Ks {
         return MTLCompareFunctionAlways;
     }
     
-    static inline MTLStencilOperation StencilOpToMTL( StencilOperation _op)
+    inline MTLStencilOperation StencilOpToMTL( StencilOperation _op)
     {
         switch (_op)
         {
@@ -283,7 +283,7 @@ namespace Ks {
         return MTLStencilOperationKeep;
     }
     
-    static inline MTLBlendFactor BlendFactorToMTL( BlendFactor _factor)
+    inline MTLBlendFactor BlendFactorToMTL( BlendFactor _factor)
     {
         switch (_factor)
         {
@@ -302,7 +302,7 @@ namespace Ks {
         return MTLBlendFactorOne;
     }
     
-    static inline MTLBlendOperation BlendOpToMTL( BlendOperation _op)
+    inline MTLBlendOperation BlendOpToMTL( BlendOperation _op)
     {
         switch (_op)
         {

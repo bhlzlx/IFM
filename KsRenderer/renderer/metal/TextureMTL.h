@@ -22,7 +22,7 @@ namespace Ks {
             return m_texture;
         }
         //
-        static TextureMTL* createTexture( const TextureDescription& _desc, id<MTLTexture> _texture );
+        static TextureMTL* createTexture( const TextureDescription& _desc, TextureUsageFlags _usage, id<MTLTexture> _texture );
     };
     
 }

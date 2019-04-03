@@ -73,15 +73,30 @@ namespace Ks {
                 break;
         }
         id<MTLBuffer> bufferMtl = nil;
-        if( _data )
-            bufferMtl = [context->getDevice() newBufferWithBytes:_data length:_size options:options];
+        if( _data ) {
+            if( options & MTLResourceStorageModePrivate ) {
+                bufferMtl = [context->getDevice() newBufferWithLength: _size options:options];
+                BufferMTL* buffer= new BufferMTL( bufferMtl );
+                context->getUploadQueue().uploadBuffer( buffer, 0, _data, _size);
+                buffer->m_usage = _usage;
+                buffer->m_raw = nullptr;
+                return buffer;
+            } else {
+                bufferMtl = [context->getDevice() newBufferWithBytes:_data length:_size options:options];
+                BufferMTL* buffer= new BufferMTL( bufferMtl );
+                buffer->m_usage = _usage;
+                buffer->m_raw = buffer->m_buffer.contents;
+                return buffer;
+            }
+        }
         else
+        {
             bufferMtl = [context->getDevice() newBufferWithLength: _size options:options];
-        BufferMTL* buffer= new BufferMTL( bufferMtl );
-        //context->getUploadQueue().uploadBuffer( buffer, 0, _data, _size);
-        buffer->m_usage = _usage;
-        buffer->m_raw = buffer->m_buffer.contents;
-        return buffer;
+            BufferMTL* buffer= new BufferMTL( bufferMtl );
+            buffer->m_usage = _usage;
+            buffer->m_raw = buffer->m_buffer.contents;
+            return buffer;
+        }
     }
     
     void BufferMTL::setDataBlocked( const void * _data, size_t _length, size_t _offset ) {

@@ -28,10 +28,14 @@ namespace Ks {
         BufferMTL( BufferMTL&& _buffer ) {
             m_buffer = _buffer.m_buffer;
             _buffer.m_buffer = nil;
+            m_raw = _buffer.m_raw;
+            _buffer.m_raw = nullptr;
         }
         BufferMTL& operator = ( BufferMTL&& _buffer ) {
             m_buffer = _buffer.m_buffer;
             _buffer.m_buffer = nil;
+            m_raw = _buffer.m_raw;
+            _buffer.m_raw = nullptr;
             return *this;
         }
         id<MTLBuffer> buffer() {

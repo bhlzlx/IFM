@@ -11,8 +11,10 @@
 @implementation KsView
 
 -(void) setupMetalLayer {
-    _metalLayer = [CAMetalLayer layer];
-    [self.layer addSublayer:_metalLayer];
+    if( nil == _metalLayer ) {
+        _metalLayer = [CAMetalLayer layer];
+        [self.layer addSublayer:_metalLayer];
+    }    
 }
 
 - (void)drawRect:(NSRect)dirtyRect {

@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <KsRenderer.h>
+#include <KsRenderer/KsRenderer.h>
 
 namespace Ks {
 	class ArchieveProtocol;

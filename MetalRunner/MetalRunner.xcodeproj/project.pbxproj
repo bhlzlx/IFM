@@ -17,8 +17,9 @@
 		2FC48059224F88B1006BA3D1 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48054224F88B1006BA3D1 /* path.cpp */; };
 		2FC48060224F89E9006BA3D1 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC4805F224F89E9006BA3D1 /* ViewController.mm */; };
 		2FC48062224F89FF006BA3D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48061224F89FF006BA3D1 /* AppDelegate.m */; };
-		2FC48064224F8A55006BA3D1 /* KsRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC48063224F8A55006BA3D1 /* KsRenderer.framework */; };
-		2FC48065224F8A55006BA3D1 /* KsRenderer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC48063224F8A55006BA3D1 /* KsRenderer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C20BCFF225458950032D4C7 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C20BCFD225458950032D4C7 /* Triangle.cpp */; };
+		7CB8282C22547FA100EF5200 /* KsRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB8282B22547FA100EF5200 /* KsRenderer.framework */; };
+		7CB8282D22547FA100EF5200 /* KsRenderer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB8282B22547FA100EF5200 /* KsRenderer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,7 +29,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2FC48065224F8A55006BA3D1 /* KsRenderer.framework in Embed Frameworks */,
+				7CB8282D22547FA100EF5200 /* KsRenderer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,7 +56,9 @@
 		2FC48054224F88B1006BA3D1 /* path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path.cpp; sourceTree = "<group>"; };
 		2FC4805F224F89E9006BA3D1 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = MetalRunner/ViewController.mm; sourceTree = SOURCE_ROOT; };
 		2FC48061224F89FF006BA3D1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MetalRunner/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		2FC48063224F8A55006BA3D1 /* KsRenderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KsRenderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C20BCFD225458950032D4C7 /* Triangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
+		7C20BCFE225458950032D4C7 /* Triangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
+		7CB8282B22547FA100EF5200 /* KsRenderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KsRenderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FC48064224F8A55006BA3D1 /* KsRenderer.framework in Frameworks */,
+				7CB8282C22547FA100EF5200 /* KsRenderer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +76,7 @@
 		2FC47FF8224F8762006BA3D1 = {
 			isa = PBXGroup;
 			children = (
-				2FC48063224F8A55006BA3D1 /* KsRenderer.framework */,
+				7CB8282B22547FA100EF5200 /* KsRenderer.framework */,
 				2FC4804B224F88B1006BA3D1 /* ks */,
 				2FC48003224F8762006BA3D1 /* MetalRunner */,
 				2FC48002224F8762006BA3D1 /* Products */,
@@ -102,6 +105,8 @@
 				2FC48012224F8765006BA3D1 /* MetalRunner.entitlements */,
 				2F2562F6224FA5DE00867323 /* KsView.h */,
 				2F2562F7224FA5DE00867323 /* KsView.m */,
+				7C20BCFD225458950032D4C7 /* Triangle.cpp */,
+				7C20BCFE225458950032D4C7 /* Triangle.h */,
 			);
 			path = MetalRunner;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 				2FC48060224F89E9006BA3D1 /* ViewController.mm in Sources */,
 				2FC48057224F88B1006BA3D1 /* standardIo.cpp in Sources */,
 				2F2562F8224FA5DE00867323 /* KsView.m in Sources */,
+				7C20BCFF225458950032D4C7 /* Triangle.cpp in Sources */,
 				2FC48011224F8765006BA3D1 /* main.m in Sources */,
 				2FC48059224F88B1006BA3D1 /* path.cpp in Sources */,
 				2FC48062224F89FF006BA3D1 /* AppDelegate.m in Sources */,
@@ -288,6 +294,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 			};
 			name = Debug;
 		};
@@ -340,6 +347,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 			};
 			name = Release;
 		};
