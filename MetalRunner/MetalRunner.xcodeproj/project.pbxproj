@@ -14,7 +14,6 @@
 		7CB8285122549B9C00EF5200 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48061224F89FF006BA3D1 /* AppDelegate.mm */; };
 		7CB8285222549BA400EF5200 /* standardIo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8284922549ADA00EF5200 /* standardIo.cpp */; };
 		7CB8285322549BA600EF5200 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8284B22549AE300EF5200 /* path.cpp */; };
-		7CB8285522549BAB00EF5200 /* KsRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB8282B22547FA100EF5200 /* KsRenderer.framework */; };
 		7CB8285822549BF300EF5200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800A224F8765006BA3D1 /* Assets.xcassets */; };
 		7CB8285922549C0200EF5200 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800C224F8765006BA3D1 /* Main.storyboard */; };
 		7CB8285C2254AB1900EF5200 /* KsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2562F7224FA5DE00867323 /* KsView.m */; };
@@ -24,10 +23,38 @@
 		7CB828602254AB1900EF5200 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48061224F89FF006BA3D1 /* AppDelegate.mm */; };
 		7CB828612254AB1900EF5200 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48010224F8765006BA3D1 /* main.m */; };
 		7CB828622254AB1900EF5200 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC4805F224F89E9006BA3D1 /* ViewController.mm */; };
-		7CB828642254AB1900EF5200 /* KsRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB8282B22547FA100EF5200 /* KsRenderer.framework */; };
 		7CB828662254AB1900EF5200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800A224F8765006BA3D1 /* Assets.xcassets */; };
 		7CB828672254AB1900EF5200 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800C224F8765006BA3D1 /* Main.storyboard */; };
+		7CB8286E2254AEA000EF5200 /* KsRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB8286D2254AEA000EF5200 /* KsRenderer.framework */; };
+		7CB8286F2254AEA000EF5200 /* KsRenderer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB8286D2254AEA000EF5200 /* KsRenderer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7CB828712254AEA900EF5200 /* KsRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB8286D2254AEA000EF5200 /* KsRenderer.framework */; };
+		7CB828722254AEA900EF5200 /* KsRenderer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB8286D2254AEA000EF5200 /* KsRenderer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7CB828702254AEA000EF5200 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7CB8286F2254AEA000EF5200 /* KsRenderer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CB828732254AEAA00EF5200 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7CB828722254AEA900EF5200 /* KsRenderer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2F2562F6224FA5DE00867323 /* KsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsView.h; sourceTree = "<group>"; };
@@ -43,7 +70,6 @@
 		2FC48061224F89FF006BA3D1 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = MetalRunner/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		7C20BCFD225458950032D4C7 /* Triangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
 		7C20BCFE225458950032D4C7 /* Triangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
-		7CB8282B22547FA100EF5200 /* KsRenderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KsRenderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CB828322254972700EF5200 /* Triangle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triangle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CB8284622549AD100EF5200 /* ks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ks; sourceTree = "<group>"; };
 		7CB8284922549ADA00EF5200 /* standardIo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = standardIo.cpp; path = ks/io/standardIo.cpp; sourceTree = "<group>"; };
@@ -51,6 +77,7 @@
 		7CB8285622549BB400EF5200 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		7CB8286B2254AB1900EF5200 /* SSAO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSAO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CB8286C2254AB1A00EF5200 /* Triangle copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Triangle copy-Info.plist"; path = "/Users/pixelsoft/Documents/GitHub/IFM/MetalRunner/Triangle copy-Info.plist"; sourceTree = "<absolute>"; };
+		7CB8286D2254AEA000EF5200 /* KsRenderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KsRenderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CB8285522549BAB00EF5200 /* KsRenderer.framework in Frameworks */,
+				7CB8286E2254AEA000EF5200 /* KsRenderer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CB828642254AB1900EF5200 /* KsRenderer.framework in Frameworks */,
+				7CB828712254AEA900EF5200 /* KsRenderer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,10 +103,10 @@
 		2FC47FF8224F8762006BA3D1 = {
 			isa = PBXGroup;
 			children = (
+				7CB8286D2254AEA000EF5200 /* KsRenderer.framework */,
 				7CB8284B22549AE300EF5200 /* path.cpp */,
 				7CB8284922549ADA00EF5200 /* standardIo.cpp */,
 				7CB8284622549AD100EF5200 /* ks */,
-				7CB8282B22547FA100EF5200 /* KsRenderer.framework */,
 				2FC48003224F8762006BA3D1 /* MetalRunner */,
 				2FC48002224F8762006BA3D1 /* Products */,
 				7CB8285422549BAB00EF5200 /* Frameworks */,
@@ -134,6 +161,7 @@
 				7CB8282E2254972700EF5200 /* Sources */,
 				7CB8282F2254972700EF5200 /* Frameworks */,
 				7CB828302254972700EF5200 /* Resources */,
+				7CB828702254AEA000EF5200 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +179,7 @@
 				7CB8285B2254AB1900EF5200 /* Sources */,
 				7CB828632254AB1900EF5200 /* Frameworks */,
 				7CB828652254AB1900EF5200 /* Resources */,
+				7CB828732254AEAA00EF5200 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
