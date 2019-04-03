@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <KsRenderer/KsApplication.h>
 
 @interface AppDelegate ()
 
@@ -16,6 +17,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    auto window = [[NSApplication sharedApplication] mainWindow];
+    auto app = GetApplication();
+    [window setTitle:[NSString stringWithUTF8String: app->title()]];
 }
 
 

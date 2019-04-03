@@ -36,13 +36,15 @@ static CVReturn renderCallback(CVDisplayLinkRef displayLink,
     _metalLayer = [_view metalLayer];
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(resize) name:@"resize" object:nil];
-
+    
     _metalLayer.framebufferOnly = YES;
     _gameViewSize = { (uint32_t)_view.frame.size.width,(uint32_t)_view.frame.size.height };
     //NSBundle * bundle = [NSBundle mainBundle];
     NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     Ks::IArch * arch = Ks::CreateStdArchieve( std::string( [documentPath cStringUsingEncoding:NSUTF8StringEncoding] ));
     _application = GetApplication();
+    
+    
     _application->initialize( (__bridge void*) _metalLayer , arch);
     // Do any additional setup after loading the view.
     // create display link
