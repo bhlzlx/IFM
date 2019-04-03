@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FB273332254FCE30001D4EF /* MRT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FB273312254FCE30001D4EF /* MRT.cpp */; };
 		7CB8284D22549B9600EF5200 /* KsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2562F7224FA5DE00867323 /* KsView.m */; };
 		7CB8284E22549B9700EF5200 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C20BCFD225458950032D4C7 /* Triangle.cpp */; };
 		7CB8284F22549B9900EF5200 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48010224F8765006BA3D1 /* main.m */; };
@@ -17,7 +18,6 @@
 		7CB8285822549BF300EF5200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800A224F8765006BA3D1 /* Assets.xcassets */; };
 		7CB8285922549C0200EF5200 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800C224F8765006BA3D1 /* Main.storyboard */; };
 		7CB8285C2254AB1900EF5200 /* KsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2562F7224FA5DE00867323 /* KsView.m */; };
-		7CB8285D2254AB1900EF5200 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C20BCFD225458950032D4C7 /* Triangle.cpp */; };
 		7CB8285E2254AB1900EF5200 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8284B22549AE300EF5200 /* path.cpp */; };
 		7CB8285F2254AB1900EF5200 /* standardIo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8284922549ADA00EF5200 /* standardIo.cpp */; };
 		7CB828602254AB1900EF5200 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48061224F89FF006BA3D1 /* AppDelegate.mm */; };
@@ -59,6 +59,8 @@
 /* Begin PBXFileReference section */
 		2F2562F6224FA5DE00867323 /* KsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsView.h; sourceTree = "<group>"; };
 		2F2562F7224FA5DE00867323 /* KsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KsView.m; sourceTree = "<group>"; };
+		2FB273312254FCE30001D4EF /* MRT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MRT.cpp; sourceTree = "<group>"; };
+		2FB273322254FCE30001D4EF /* MRT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRT.h; sourceTree = "<group>"; };
 		2FC48004224F8762006BA3D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2FC48007224F8762006BA3D1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2FC4800A224F8765006BA3D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,8 +77,7 @@
 		7CB8284922549ADA00EF5200 /* standardIo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = standardIo.cpp; path = ks/io/standardIo.cpp; sourceTree = "<group>"; };
 		7CB8284B22549AE300EF5200 /* path.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = path.cpp; path = ks/string/path.cpp; sourceTree = "<group>"; };
 		7CB8285622549BB400EF5200 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
-		7CB8286B2254AB1900EF5200 /* SSAO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSAO.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CB8286C2254AB1A00EF5200 /* Triangle copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Triangle copy-Info.plist"; path = "/Users/pixelsoft/Documents/GitHub/IFM/MetalRunner/Triangle copy-Info.plist"; sourceTree = "<absolute>"; };
+		7CB8286B2254AB1900EF5200 /* MRT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CB8286D2254AEA000EF5200 /* KsRenderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KsRenderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -110,7 +111,6 @@
 				2FC48003224F8762006BA3D1 /* MetalRunner */,
 				2FC48002224F8762006BA3D1 /* Products */,
 				7CB8285422549BAB00EF5200 /* Frameworks */,
-				7CB8286C2254AB1A00EF5200 /* Triangle copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				7CB828322254972700EF5200 /* Triangle.app */,
-				7CB8286B2254AB1900EF5200 /* SSAO.app */,
+				7CB8286B2254AB1900EF5200 /* MRT.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +126,8 @@
 		2FC48003224F8762006BA3D1 /* MetalRunner */ = {
 			isa = PBXGroup;
 			children = (
+				2FB273312254FCE30001D4EF /* MRT.cpp */,
+				2FB273322254FCE30001D4EF /* MRT.h */,
 				2FC48061224F89FF006BA3D1 /* AppDelegate.mm */,
 				2FC4805F224F89E9006BA3D1 /* ViewController.mm */,
 				2FC48004224F8762006BA3D1 /* AppDelegate.h */,
@@ -172,9 +174,9 @@
 			productReference = 7CB828322254972700EF5200 /* Triangle.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7CB8285A2254AB1900EF5200 /* SSAO */ = {
+		7CB8285A2254AB1900EF5200 /* MRT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CB828682254AB1900EF5200 /* Build configuration list for PBXNativeTarget "SSAO" */;
+			buildConfigurationList = 7CB828682254AB1900EF5200 /* Build configuration list for PBXNativeTarget "MRT" */;
 			buildPhases = (
 				7CB8285B2254AB1900EF5200 /* Sources */,
 				7CB828632254AB1900EF5200 /* Frameworks */,
@@ -185,9 +187,9 @@
 			);
 			dependencies = (
 			);
-			name = SSAO;
+			name = MRT;
 			productName = Triangle;
-			productReference = 7CB8286B2254AB1900EF5200 /* SSAO.app */;
+			productReference = 7CB8286B2254AB1900EF5200 /* MRT.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -218,7 +220,7 @@
 			projectRoot = "";
 			targets = (
 				7CB828312254972700EF5200 /* Triangle */,
-				7CB8285A2254AB1900EF5200 /* SSAO */,
+				7CB8285A2254AB1900EF5200 /* MRT */,
 			);
 		};
 /* End PBXProject section */
@@ -264,9 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CB8285C2254AB1900EF5200 /* KsView.m in Sources */,
-				7CB8285D2254AB1900EF5200 /* Triangle.cpp in Sources */,
 				7CB8285E2254AB1900EF5200 /* path.cpp in Sources */,
 				7CB8285F2254AB1900EF5200 /* standardIo.cpp in Sources */,
+				2FB273332254FCE30001D4EF /* MRT.cpp in Sources */,
 				7CB828602254AB1900EF5200 /* AppDelegate.mm in Sources */,
 				7CB828612254AB1900EF5200 /* main.m in Sources */,
 				7CB828622254AB1900EF5200 /* ViewController.mm in Sources */,
@@ -412,7 +414,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.Triangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -430,7 +432,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.Triangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -448,7 +450,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.Triangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -466,7 +468,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.Triangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -493,7 +495,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CB828682254AB1900EF5200 /* Build configuration list for PBXNativeTarget "SSAO" */ = {
+		7CB828682254AB1900EF5200 /* Build configuration list for PBXNativeTarget "MRT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CB828692254AB1900EF5200 /* Debug */,
