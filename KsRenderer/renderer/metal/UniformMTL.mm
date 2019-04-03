@@ -12,6 +12,12 @@
 
 namespace Ks {
     
+#if TARGET_OS_IPHONE
+    const uint32_t TransientUBOAlignment = 16;
+#else
+    const uint32_t TransientUBOAlignment = 256;
+#endif
+    
     bool TransientUniformPool::initialize() {
         BufferMTL* buffer = BufferMTL::createBuffer( UniformPoolSize, nullptr, BufferUsageUniform );
         m_buffer = std::move(*buffer);
@@ -25,7 +31,7 @@ namespace Ks {
             offset_ = m_offset;
             *buffer_ = m_buffer.buffer();
             m_offset += _size;
-            m_offset = ( m_offset + 63 ) & ~(63);
+            m_offset = ( m_offset + (TransientUBOAlignment-1) ) & ~(TransientUBOAlignment-1);
             return true;
         }
         return false;
