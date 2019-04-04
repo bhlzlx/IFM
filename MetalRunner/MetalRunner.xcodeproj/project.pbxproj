@@ -83,7 +83,6 @@
 		7CB8284922549ADA00EF5200 /* standardIo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = standardIo.cpp; path = ks/io/standardIo.cpp; sourceTree = "<group>"; };
 		7CB8284B22549AE300EF5200 /* path.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = path.cpp; path = ks/string/path.cpp; sourceTree = "<group>"; };
 		7CB8285622549BB400EF5200 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
-<<<<<<< HEAD
 		7CB8286B2254AB1900EF5200 /* SSAO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSAO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CB8286C2254AB1A00EF5200 /* Triangle copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Triangle copy-Info.plist"; path = "/Users/pixelsoft/Documents/GitHub/IFM/MetalRunner/Triangle copy-Info.plist"; sourceTree = "<absolute>"; };
 		7CFD49F32255A28C0066DD56 /* SRPresent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SRPresent.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,10 +102,6 @@
 		7CFD4A3E2255ABB70066DD56 /* KsRendereriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KsRendereriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CFD4A402255B1990066DD56 /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
 		7CFD4A412255B1990066DD56 /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
-=======
-		7CB8286B2254AB1900EF5200 /* MRT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRT.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CB8286D2254AEA000EF5200 /* KsRenderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KsRenderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
->>>>>>> 422e7c7537d991a88ec9512ce84e53cbf3018a63
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,12 +148,9 @@
 			isa = PBXGroup;
 			children = (
 				7CB828322254972700EF5200 /* Triangle.app */,
-<<<<<<< HEAD
 				7CB8286B2254AB1900EF5200 /* SSAO.app */,
 				7CFD49F32255A28C0066DD56 /* SRPresent.app */,
-=======
 				7CB8286B2254AB1900EF5200 /* MRT.app */,
->>>>>>> 422e7c7537d991a88ec9512ce84e53cbf3018a63
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,12 +295,8 @@
 			projectRoot = "";
 			targets = (
 				7CB828312254972700EF5200 /* Triangle */,
-<<<<<<< HEAD
 				7CB8285A2254AB1900EF5200 /* SSAO */,
 				7CFD49F22255A28C0066DD56 /* SRPresent */,
-=======
-				7CB8285A2254AB1900EF5200 /* MRT */,
->>>>>>> 422e7c7537d991a88ec9512ce84e53cbf3018a63
 			);
 		};
 /* End PBXProject section */
