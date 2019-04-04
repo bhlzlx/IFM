@@ -22,7 +22,6 @@ namespace Ks {
 #endif
             case KsRGBA_F16: return MTLPixelFormatRGBA16Float;
             case KsRGBA_F32: return MTLPixelFormatRGBA32Float;
-            case KsDepth24FStencil8: return MTLPixelFormatDepth24Unorm_Stencil8;
             case KsDepth32F: return MTLPixelFormatDepth32Float;
             case KsDepth32FStencil8: return MTLPixelFormatDepth32Float_Stencil8;
                 
@@ -31,6 +30,7 @@ namespace Ks {
             case KsPVRTC_LINEAR_RGBA: return MTLPixelFormatPVRTC_RGBA_4BPP;
 #else
             case KsBC3_LINEAR_RGBA: return MTLPixelFormatBC3_RGBA;
+            case KsDepth24FStencil8: return MTLPixelFormatDepth24Unorm_Stencil8;
 #endif
             default:
                 break;
@@ -49,7 +49,6 @@ namespace Ks {
 #endif
             case MTLPixelFormatRGBA16Float: return KsRGBA_F16;
             case MTLPixelFormatRGBA32Float: return KsRGBA_F32;
-            case MTLPixelFormatDepth24Unorm_Stencil8: return KsDepth24FStencil8;
             case MTLPixelFormatDepth32Float: return KsDepth32F;
             case MTLPixelFormatDepth32Float_Stencil8: return KsDepth32FStencil8;
                 
@@ -58,6 +57,7 @@ namespace Ks {
             case MTLPixelFormatPVRTC_RGBA_4BPP: return KsPVRTC_LINEAR_RGBA;
 #else
             case MTLPixelFormatBC3_RGBA: return KsBC3_LINEAR_RGBA;
+            case MTLPixelFormatDepth24Unorm_Stencil8: return KsDepth24FStencil8;
 #endif
             default:
                 break;

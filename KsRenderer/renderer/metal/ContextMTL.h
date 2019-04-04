@@ -6,7 +6,6 @@
 //  Copyright © 2019年 kusugawa. All rights reserved.
 //
 #pragma once
-#include <KsRenderer.h>
 #include "MetalInc.h"
 #include "QueueMTL.h"
 #include "SwapchainMTL.h"

@@ -17,11 +17,6 @@
     }    
 }
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-    // Drawing code here.
-}
-
 -(CAMetalLayer*) metalLayer {
     return _metalLayer;
 }

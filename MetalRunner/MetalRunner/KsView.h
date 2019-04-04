@@ -19,7 +19,5 @@ NS_ASSUME_NONNULL_BEGIN
 -(CAMetalLayer*) metalLayer;
 -(void) setupMetalLayer;
 
-
-
 @end
 NS_ASSUME_NONNULL_END

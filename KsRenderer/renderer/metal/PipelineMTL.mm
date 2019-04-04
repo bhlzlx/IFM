@@ -223,6 +223,7 @@ namespace Ks {
                     item.uniformIndex = (uint32_t)arg.index;
                     item.buffer = nil;
                     item.offset = 0;
+                    item.size = (uint32_t)arg.bufferDataSize;
                     item.type = MTLFunctionTypeVertex;
                     argument->m_vecUniforms.push_back(item);
                     found = true;
@@ -238,6 +239,7 @@ namespace Ks {
                     item.buffer = nil;
                     item.offset = 0;
                     item.type = MTLFunctionTypeFragment;
+                    item.size = (uint32_t)arg.bufferDataSize;
                     argument->m_vecUniforms.push_back(item);
                     break;
                 }

@@ -37,6 +37,35 @@
 		2FC4804A224F87D7006BA3D1 /* KsDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48037224F87D7006BA3D1 /* KsDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FC8E78C2252653E00AAC990 /* ArgumentMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC8E78A2252653E00AAC990 /* ArgumentMTL.mm */; };
 		2FC8E78D2252653E00AAC990 /* ArgumentMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC8E78B2252653E00AAC990 /* ArgumentMTL.h */; };
+		7CFD4A1B2255A92B0066DD56 /* SwapchainMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48029224F87D7006BA3D1 /* SwapchainMTL.mm */; };
+		7CFD4A1C2255A9710066DD56 /* TextureMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC4802C224F87D7006BA3D1 /* TextureMTL.mm */; };
+		7CFD4A1D2255A9710066DD56 /* RenderPassMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48030224F87D7006BA3D1 /* RenderPassMTL.mm */; };
+		7CFD4A1E2255A9710066DD56 /* ContextMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48031224F87D7006BA3D1 /* ContextMTL.mm */; };
+		7CFD4A1F2255A9710066DD56 /* QueueMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48033224F87D7006BA3D1 /* QueueMTL.mm */; };
+		7CFD4A202255A9710066DD56 /* ShaderModuleMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F632BED22510EF8007FE762 /* ShaderModuleMTL.mm */; };
+		7CFD4A212255A9710066DD56 /* PipelineMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F632BF122511046007FE762 /* PipelineMTL.mm */; };
+		7CFD4A222255A9710066DD56 /* ArgumentMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC8E78A2252653E00AAC990 /* ArgumentMTL.mm */; };
+		7CFD4A232255A9710066DD56 /* UniformMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F76A7192253A29600842D40 /* UniformMTL.mm */; };
+		7CFD4A242255A9710066DD56 /* DrawableMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F76A71D2253C03500842D40 /* DrawableMTL.mm */; };
+		7CFD4A252255A9710066DD56 /* ViewMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48027224F87D7006BA3D1 /* ViewMTL.mm */; };
+		7CFD4A262255A9710066DD56 /* BufferMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48028224F87D7006BA3D1 /* BufferMTL.mm */; };
+		7CFD4A272255A9960066DD56 /* KsRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48035224F87D7006BA3D1 /* KsRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7CFD4A282255A9960066DD56 /* KsApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48036224F87D7006BA3D1 /* KsApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7CFD4A292255A9960066DD56 /* KsDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48037224F87D7006BA3D1 /* KsDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7CFD4A2A2255A9BC0066DD56 /* MTLTypeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48024224F87D7006BA3D1 /* MTLTypeMapping.h */; };
+		7CFD4A2B2255A9BC0066DD56 /* DrawableMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F76A71E2253C03500842D40 /* DrawableMTL.h */; };
+		7CFD4A2C2255A9BC0066DD56 /* ViewMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48025224F87D7006BA3D1 /* ViewMTL.h */; };
+		7CFD4A2D2255A9BC0066DD56 /* SwapchainMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48026224F87D7006BA3D1 /* SwapchainMTL.h */; };
+		7CFD4A2E2255A9BC0066DD56 /* MetalInc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC4802A224F87D7006BA3D1 /* MetalInc.h */; };
+		7CFD4A2F2255A9BC0066DD56 /* BufferMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC4802B224F87D7006BA3D1 /* BufferMTL.h */; };
+		7CFD4A302255A9BC0066DD56 /* TextureMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC4802D224F87D7006BA3D1 /* TextureMTL.h */; };
+		7CFD4A312255A9BC0066DD56 /* RenderPassMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC4802E224F87D7006BA3D1 /* RenderPassMTL.h */; };
+		7CFD4A322255A9BC0066DD56 /* ContextMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC48032224F87D7006BA3D1 /* ContextMTL.h */; };
+		7CFD4A332255A9BC0066DD56 /* QueueMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC4802F224F87D7006BA3D1 /* QueueMTL.h */; };
+		7CFD4A342255A9BC0066DD56 /* ShaderModuleMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F632BEE22510EF8007FE762 /* ShaderModuleMTL.h */; };
+		7CFD4A352255A9BC0066DD56 /* PipelineMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F632BF222511046007FE762 /* PipelineMTL.h */; };
+		7CFD4A362255A9BC0066DD56 /* ArgumentMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC8E78B2252653E00AAC990 /* ArgumentMTL.h */; };
+		7CFD4A372255A9BC0066DD56 /* UniformMTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F76A71A2253A29600842D40 /* UniformMTL.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,10 +101,20 @@
 		2FC48037224F87D7006BA3D1 /* KsDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KsDefine.h; sourceTree = "<group>"; };
 		2FC8E78A2252653E00AAC990 /* ArgumentMTL.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ArgumentMTL.mm; sourceTree = "<group>"; };
 		2FC8E78B2252653E00AAC990 /* ArgumentMTL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArgumentMTL.h; sourceTree = "<group>"; };
+		7CFD4A0E2255A5860066DD56 /* KsRendereriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsRendereriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CFD4A102255A5860066DD56 /* KsRenderer_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsRenderer_iOS.h; sourceTree = "<group>"; };
+		7CFD4A112255A5860066DD56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2FC47FEA224F86FF006BA3D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CFD4A0B2255A5860066DD56 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -91,6 +130,7 @@
 				2FC48034224F87D7006BA3D1 /* common */,
 				2FC48022224F87D7006BA3D1 /* renderer */,
 				2FC47FEF224F86FF006BA3D1 /* KsRenderer */,
+				7CFD4A0F2255A5860066DD56 /* KsRenderer-iOS */,
 				2FC47FEE224F86FF006BA3D1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				2FC47FED224F86FF006BA3D1 /* KsRenderer.framework */,
+				7CFD4A0E2255A5860066DD56 /* KsRendereriOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,32 +164,32 @@
 			isa = PBXGroup;
 			children = (
 				2FC48024224F87D7006BA3D1 /* MTLTypeMapping.h */,
+				2F76A71E2253C03500842D40 /* DrawableMTL.h */,
 				2FC48025224F87D7006BA3D1 /* ViewMTL.h */,
 				2FC48026224F87D7006BA3D1 /* SwapchainMTL.h */,
+				2FC4802A224F87D7006BA3D1 /* MetalInc.h */,
+				2FC4802B224F87D7006BA3D1 /* BufferMTL.h */,
+				2FC4802D224F87D7006BA3D1 /* TextureMTL.h */,
+				2FC4802E224F87D7006BA3D1 /* RenderPassMTL.h */,
+				2FC48032224F87D7006BA3D1 /* ContextMTL.h */,
+				2FC4802F224F87D7006BA3D1 /* QueueMTL.h */,
+				2F632BEB22510D36007FE762 /* metal.md */,
+				2F632BEE22510EF8007FE762 /* ShaderModuleMTL.h */,
+				2F632BF222511046007FE762 /* PipelineMTL.h */,
+				2FC8E78B2252653E00AAC990 /* ArgumentMTL.h */,
+				2F76A71A2253A29600842D40 /* UniformMTL.h */,
+				2FC4802C224F87D7006BA3D1 /* TextureMTL.mm */,
+				2FC48030224F87D7006BA3D1 /* RenderPassMTL.mm */,
+				2FC48031224F87D7006BA3D1 /* ContextMTL.mm */,
+				2FC48033224F87D7006BA3D1 /* QueueMTL.mm */,
+				2F632BED22510EF8007FE762 /* ShaderModuleMTL.mm */,
+				2F632BF122511046007FE762 /* PipelineMTL.mm */,
+				2FC8E78A2252653E00AAC990 /* ArgumentMTL.mm */,
+				2F76A7192253A29600842D40 /* UniformMTL.mm */,
+				2F76A71D2253C03500842D40 /* DrawableMTL.mm */,
 				2FC48027224F87D7006BA3D1 /* ViewMTL.mm */,
 				2FC48028224F87D7006BA3D1 /* BufferMTL.mm */,
 				2FC48029224F87D7006BA3D1 /* SwapchainMTL.mm */,
-				2FC4802A224F87D7006BA3D1 /* MetalInc.h */,
-				2FC4802B224F87D7006BA3D1 /* BufferMTL.h */,
-				2FC4802C224F87D7006BA3D1 /* TextureMTL.mm */,
-				2FC4802D224F87D7006BA3D1 /* TextureMTL.h */,
-				2FC4802E224F87D7006BA3D1 /* RenderPassMTL.h */,
-				2FC48030224F87D7006BA3D1 /* RenderPassMTL.mm */,
-				2FC48031224F87D7006BA3D1 /* ContextMTL.mm */,
-				2FC48032224F87D7006BA3D1 /* ContextMTL.h */,
-				2FC4802F224F87D7006BA3D1 /* QueueMTL.h */,
-				2FC48033224F87D7006BA3D1 /* QueueMTL.mm */,
-				2F632BEB22510D36007FE762 /* metal.md */,
-				2F632BED22510EF8007FE762 /* ShaderModuleMTL.mm */,
-				2F632BEE22510EF8007FE762 /* ShaderModuleMTL.h */,
-				2F632BF122511046007FE762 /* PipelineMTL.mm */,
-				2F632BF222511046007FE762 /* PipelineMTL.h */,
-				2FC8E78A2252653E00AAC990 /* ArgumentMTL.mm */,
-				2FC8E78B2252653E00AAC990 /* ArgumentMTL.h */,
-				2F76A7192253A29600842D40 /* UniformMTL.mm */,
-				2F76A71A2253A29600842D40 /* UniformMTL.h */,
-				2F76A71D2253C03500842D40 /* DrawableMTL.mm */,
-				2F76A71E2253C03500842D40 /* DrawableMTL.h */,
 			);
 			path = metal;
 			sourceTree = "<group>";
@@ -163,6 +204,15 @@
 			path = common;
 			sourceTree = "<group>";
 		};
+		7CFD4A0F2255A5860066DD56 /* KsRenderer-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7CFD4A102255A5860066DD56 /* KsRenderer_iOS.h */,
+				7CFD4A112255A5860066DD56 /* Info.plist */,
+			);
+			path = "KsRenderer-iOS";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -171,22 +221,46 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC48048224F87D7006BA3D1 /* KsRenderer.h in Headers */,
-				2F76A71C2253A29600842D40 /* UniformMTL.h in Headers */,
-				2FC8E78D2252653E00AAC990 /* ArgumentMTL.h in Headers */,
-				2FC48049224F87D7006BA3D1 /* KsApplication.h in Headers */,
-				2F632BF422511046007FE762 /* PipelineMTL.h in Headers */,
-				2F76A7202253C03500842D40 /* DrawableMTL.h in Headers */,
-				2FC4804A224F87D7006BA3D1 /* KsDefine.h in Headers */,
-				2FC48042224F87D7006BA3D1 /* RenderPassMTL.h in Headers */,
 				2FC48038224F87D7006BA3D1 /* MTLTypeMapping.h in Headers */,
+				2F76A7202253C03500842D40 /* DrawableMTL.h in Headers */,
+				2FC48039224F87D7006BA3D1 /* ViewMTL.h in Headers */,
+				2FC4803A224F87D7006BA3D1 /* SwapchainMTL.h in Headers */,
+				2FC4803E224F87D7006BA3D1 /* MetalInc.h in Headers */,
 				2FC4803F224F87D7006BA3D1 /* BufferMTL.h in Headers */,
+				2FC48041224F87D7006BA3D1 /* TextureMTL.h in Headers */,
+				2FC48042224F87D7006BA3D1 /* RenderPassMTL.h in Headers */,
 				2FC48046224F87D7006BA3D1 /* ContextMTL.h in Headers */,
 				2FC48043224F87D7006BA3D1 /* QueueMTL.h in Headers */,
-				2FC48039224F87D7006BA3D1 /* ViewMTL.h in Headers */,
 				2F632BF022510EF8007FE762 /* ShaderModuleMTL.h in Headers */,
-				2FC4803E224F87D7006BA3D1 /* MetalInc.h in Headers */,
-				2FC48041224F87D7006BA3D1 /* TextureMTL.h in Headers */,
-				2FC4803A224F87D7006BA3D1 /* SwapchainMTL.h in Headers */,
+				2F632BF422511046007FE762 /* PipelineMTL.h in Headers */,
+				2FC8E78D2252653E00AAC990 /* ArgumentMTL.h in Headers */,
+				2F76A71C2253A29600842D40 /* UniformMTL.h in Headers */,
+				2FC48049224F87D7006BA3D1 /* KsApplication.h in Headers */,
+				2FC4804A224F87D7006BA3D1 /* KsDefine.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CFD4A092255A5860066DD56 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CFD4A272255A9960066DD56 /* KsRenderer.h in Headers */,
+				7CFD4A282255A9960066DD56 /* KsApplication.h in Headers */,
+				7CFD4A292255A9960066DD56 /* KsDefine.h in Headers */,
+				7CFD4A2A2255A9BC0066DD56 /* MTLTypeMapping.h in Headers */,
+				7CFD4A2B2255A9BC0066DD56 /* DrawableMTL.h in Headers */,
+				7CFD4A2C2255A9BC0066DD56 /* ViewMTL.h in Headers */,
+				7CFD4A2D2255A9BC0066DD56 /* SwapchainMTL.h in Headers */,
+				7CFD4A2E2255A9BC0066DD56 /* MetalInc.h in Headers */,
+				7CFD4A2F2255A9BC0066DD56 /* BufferMTL.h in Headers */,
+				7CFD4A302255A9BC0066DD56 /* TextureMTL.h in Headers */,
+				7CFD4A312255A9BC0066DD56 /* RenderPassMTL.h in Headers */,
+				7CFD4A322255A9BC0066DD56 /* ContextMTL.h in Headers */,
+				7CFD4A332255A9BC0066DD56 /* QueueMTL.h in Headers */,
+				7CFD4A342255A9BC0066DD56 /* ShaderModuleMTL.h in Headers */,
+				7CFD4A352255A9BC0066DD56 /* PipelineMTL.h in Headers */,
+				7CFD4A362255A9BC0066DD56 /* ArgumentMTL.h in Headers */,
+				7CFD4A372255A9BC0066DD56 /* UniformMTL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +285,24 @@
 			productReference = 2FC47FED224F86FF006BA3D1 /* KsRenderer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		7CFD4A0D2255A5860066DD56 /* KsRendereriOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7CFD4A132255A5860066DD56 /* Build configuration list for PBXNativeTarget "KsRendereriOS" */;
+			buildPhases = (
+				7CFD4A092255A5860066DD56 /* Headers */,
+				7CFD4A0A2255A5860066DD56 /* Sources */,
+				7CFD4A0B2255A5860066DD56 /* Frameworks */,
+				7CFD4A0C2255A5860066DD56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KsRendereriOS;
+			productName = "KsRenderer-iOS";
+			productReference = 7CFD4A0E2255A5860066DD56 /* KsRendereriOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -222,6 +314,9 @@
 				TargetAttributes = {
 					2FC47FEC224F86FF006BA3D1 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					7CFD4A0D2255A5860066DD56 = {
+						CreatedOnToolsVersion = 10.2;
 					};
 				};
 			};
@@ -239,6 +334,7 @@
 			projectRoot = "";
 			targets = (
 				2FC47FEC224F86FF006BA3D1 /* KsRenderer */,
+				7CFD4A0D2255A5860066DD56 /* KsRendereriOS */,
 			);
 		};
 /* End PBXProject section */
@@ -249,6 +345,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F632BEC22510D36007FE762 /* metal.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CFD4A0C2255A5860066DD56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +374,25 @@
 				2F632BEF22510EF8007FE762 /* ShaderModuleMTL.mm in Sources */,
 				2FC48040224F87D7006BA3D1 /* TextureMTL.mm in Sources */,
 				2F76A71F2253C03500842D40 /* DrawableMTL.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CFD4A0A2255A5860066DD56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CFD4A1C2255A9710066DD56 /* TextureMTL.mm in Sources */,
+				7CFD4A1D2255A9710066DD56 /* RenderPassMTL.mm in Sources */,
+				7CFD4A1E2255A9710066DD56 /* ContextMTL.mm in Sources */,
+				7CFD4A1F2255A9710066DD56 /* QueueMTL.mm in Sources */,
+				7CFD4A202255A9710066DD56 /* ShaderModuleMTL.mm in Sources */,
+				7CFD4A212255A9710066DD56 /* PipelineMTL.mm in Sources */,
+				7CFD4A222255A9710066DD56 /* ArgumentMTL.mm in Sources */,
+				7CFD4A232255A9710066DD56 /* UniformMTL.mm in Sources */,
+				7CFD4A242255A9710066DD56 /* DrawableMTL.mm in Sources */,
+				7CFD4A252255A9710066DD56 /* ViewMTL.mm in Sources */,
+				7CFD4A262255A9710066DD56 /* BufferMTL.mm in Sources */,
+				7CFD4A1B2255A92B0066DD56 /* SwapchainMTL.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +519,7 @@
 		2FC47FF6224F86FF006BA3D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -407,6 +530,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = KsRenderer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -415,14 +539,18 @@
 				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.KsRenderer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/common";
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
 		2FC47FF7224F86FF006BA3D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -433,6 +561,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = KsRenderer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -441,8 +570,66 @@
 				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.KsRenderer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/common";
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Release;
+		};
+		7CFD4A142255A5860066DD56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/common";
+				INFOPLIST_FILE = "KsRenderer-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "kusugawa.KsRenderer-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7CFD4A152255A5860066DD56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/common";
+				INFOPLIST_FILE = "KsRenderer-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "kusugawa.KsRenderer-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -463,6 +650,15 @@
 			buildConfigurations = (
 				2FC47FF6224F86FF006BA3D1 /* Debug */,
 				2FC47FF7224F86FF006BA3D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7CFD4A132255A5860066DD56 /* Build configuration list for PBXNativeTarget "KsRendereriOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CFD4A142255A5860066DD56 /* Debug */,
+				7CFD4A152255A5860066DD56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

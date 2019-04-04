@@ -1,23 +1,24 @@
 //
 //  ViewController.h
-//  RendererDemo
+//  SRPresent
 //
-//  Created by kusugawa on 2019/3/22.
-//  Copyright © 2019年 kusugawa. All rights reserved.
+//  Created by pixelsoft on 2019/4/4.
+//  Copyright © 2019 kusugawa. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <UIKit/UIKit.h>
 #include <QuartzCore/CAMetalLayer.h>
-#import "ks/io/io.h"
-#import <KsRenderer/KsRenderer.h>
+#import <QuartzCore/CADisplayLink.h>
+#import <KsRendereriOS/KsRenderer.h>
 #import "KsView.h"
+#import "ks/io/io.h"
 #import "Triangle.h"
 
-@interface ViewController : NSViewController
+@interface ViewController : UIViewController
 {
     __weak CAMetalLayer* _metalLayer;
     KsView* _view;
-    CVDisplayLinkRef _displayLink;
+    CADisplayLink* _displayLink;
     Ks::Size<uint32_t> _gameViewSize;
     KsApplication* _application;
     //
@@ -26,4 +27,6 @@
     Ks::Scissor _scissor;
 }
 
+
 @end
+
