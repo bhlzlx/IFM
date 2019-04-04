@@ -12,7 +12,7 @@
 
 namespace Ks {
     
-    class Triangle : public KsApplication {
+    class MultiRenderTarget : public KsApplication {
     private:
         IContext* m_context;
         IView* m_view;
@@ -43,7 +43,7 @@ namespace Ks {
         virtual void release() override;
         virtual void tick() override;
         virtual const char * title() override {
-            return "Triangle";
+            return "Multi-RenderTarget";
         }
         virtual DeviceType contextType() override {
             return Metal;

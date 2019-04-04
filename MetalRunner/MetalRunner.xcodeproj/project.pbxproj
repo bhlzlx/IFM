@@ -17,7 +17,6 @@
 		7CB8285822549BF300EF5200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800A224F8765006BA3D1 /* Assets.xcassets */; };
 		7CB8285922549C0200EF5200 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4800C224F8765006BA3D1 /* Main.storyboard */; };
 		7CB8285C2254AB1900EF5200 /* KsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2562F7224FA5DE00867323 /* KsView.m */; };
-		7CB8285D2254AB1900EF5200 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C20BCFD225458950032D4C7 /* Triangle.cpp */; };
 		7CB8285E2254AB1900EF5200 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8284B22549AE300EF5200 /* path.cpp */; };
 		7CB8285F2254AB1900EF5200 /* standardIo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8284922549ADA00EF5200 /* standardIo.cpp */; };
 		7CB828602254AB1900EF5200 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FC48061224F89FF006BA3D1 /* AppDelegate.mm */; };
@@ -139,7 +138,6 @@
 				7CFD49F42255A28C0066DD56 /* SRPresent */,
 				2FC48002224F8762006BA3D1 /* Products */,
 				7CB8285422549BAB00EF5200 /* Frameworks */,
-				7CB8286C2254AB1A00EF5200 /* Triangle copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,9 +223,9 @@
 			productReference = 7CB828322254972700EF5200 /* Triangle.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7CB8285A2254AB1900EF5200 /* SSAO */ = {
+		7CB8285A2254AB1900EF5200 /* MRT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CB828682254AB1900EF5200 /* Build configuration list for PBXNativeTarget "SSAO" */;
+			buildConfigurationList = 7CB828682254AB1900EF5200 /* Build configuration list for PBXNativeTarget "MRT" */;
 			buildPhases = (
 				7CB8285B2254AB1900EF5200 /* Sources */,
 				7CB828632254AB1900EF5200 /* Frameworks */,
@@ -238,9 +236,9 @@
 			);
 			dependencies = (
 			);
-			name = SSAO;
+			name = MRT;
 			productName = Triangle;
-			productReference = 7CB8286B2254AB1900EF5200 /* SSAO.app */;
+			productReference = 7CB8286B2254AB1900EF5200 /* MRT.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7CFD49F22255A28C0066DD56 /* SRPresent */ = {
@@ -291,8 +289,12 @@
 			projectRoot = "";
 			targets = (
 				7CB828312254972700EF5200 /* Triangle */,
+<<<<<<< HEAD
 				7CB8285A2254AB1900EF5200 /* SSAO */,
 				7CFD49F22255A28C0066DD56 /* SRPresent */,
+=======
+				7CB8285A2254AB1900EF5200 /* MRT */,
+>>>>>>> 422e7c7537d991a88ec9512ce84e53cbf3018a63
 			);
 		};
 /* End PBXProject section */
@@ -348,9 +350,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CB8285C2254AB1900EF5200 /* KsView.m in Sources */,
-				7CB8285D2254AB1900EF5200 /* Triangle.cpp in Sources */,
 				7CB8285E2254AB1900EF5200 /* path.cpp in Sources */,
 				7CB8285F2254AB1900EF5200 /* standardIo.cpp in Sources */,
+				2FB273332254FCE30001D4EF /* MRT.cpp in Sources */,
 				7CB828602254AB1900EF5200 /* AppDelegate.mm in Sources */,
 				7CB828612254AB1900EF5200 /* main.m in Sources */,
 				7CB828622254AB1900EF5200 /* ViewController.mm in Sources */,
@@ -526,7 +528,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.Triangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -544,7 +546,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.Triangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -562,7 +564,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.Triangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -580,7 +582,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = kusugawa.Triangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -648,7 +650,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CB828682254AB1900EF5200 /* Build configuration list for PBXNativeTarget "SSAO" */ = {
+		7CB828682254AB1900EF5200 /* Build configuration list for PBXNativeTarget "MRT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CB828692254AB1900EF5200 /* Debug */,
