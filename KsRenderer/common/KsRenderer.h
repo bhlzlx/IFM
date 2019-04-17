@@ -15,6 +15,10 @@
 #define KS_API_DECL 
 #endif
 
+#ifndef KS_JSON
+#define KS_JSON(...)
+#endif
+
 #include "KsDefine.h"
 #include <memory>
 #define GL_GLEXT_PROTOTYPES
@@ -98,6 +102,7 @@ namespace Ks{
         GLES3,
         Metal,
         Vulkan,
+		DX12,
         OpenGLCore
     };
 
@@ -131,18 +136,13 @@ namespace Ks{
 		KsPVRTC_LINEAR_RGBA,
 	};
 
-	uint32_t OglFormat(KsFormat _format);
-	uint32_t OglInternalFormat(KsFormat _foramt);
-	uint32_t OglFormatType(KsFormat _format);
-	bool IsStencilFormat(KsFormat _format);
-
-    enum PolygonMode {
+    enum PolygonMode :uint8_t {
         PMPoint = 0,
         PMLine,
         PMFill
     };
 
-    enum TopologyMode {
+    enum TopologyMode :uint8_t {
         TMPoints = 0,
         TMLineStrip,
         TMLineList,
@@ -152,19 +152,19 @@ namespace Ks{
 		TMCount,
     };
 
-    enum CullMode {
+    enum CullMode :uint8_t {
         None = 0,
         Back = 1,
         Front = 2,
 		FrontAndBack = 3
     };
 
-    enum WindingMode {
+    enum WindingMode : uint8_t {
         Clockwise = 0,
         CounterClockwise = 1,
     };
 
-    enum CompareFunction {
+    enum CompareFunction : uint8_t {
         Never,
         Less,
         Equal,
@@ -174,7 +174,7 @@ namespace Ks{
         Always,
     };
 
-    enum BlendFactor {
+    enum BlendFactor :uint8_t {
         Zero,
         One,
         SourceColor,
@@ -189,13 +189,13 @@ namespace Ks{
         InvertDestinationAlpha,
     };
 
-    enum BlendOperation {
+    enum BlendOperation :uint8_t {
         BlendOpAdd,
         BlendOpSubtract,
         BlendOpRevsubtract,
     };
 
-    enum StencilOperation {
+    enum StencilOperation :uint8_t {
         StencilOpKeep,
         StencilOpZero,
         StencilOpReplace,
@@ -206,22 +206,76 @@ namespace Ks{
         StencilOpDec
     };
 
-    enum AddressMode {
+    enum AddressMode :uint8_t {
         AddressModeWrap,
         AddressModeClamp,
         AddressModeMirror,
     };
 
-    enum TextureFilter {
+    enum TextureFilter :uint8_t {
         TexFilterNone,
         TexFilterPoint,
         TexFilterLinear
     };
 
-    enum TextureCompareMode {
+    enum TextureCompareMode :uint8_t {
         RefNone = 0,
         RefToTexture = 1
     };
+
+	enum VertexType :uint8_t {
+		VertexTypeFloat1,
+		VertexTypeFloat2,
+		VertexTypeFloat3,
+		VertexTypeFloat4,
+		VertexTypeHalf2,
+		VertexTypeHalf4,
+		VertexTypeUByte4,
+		VertexTypeUByte4N,
+	};
+
+	enum TextureType :uint8_t {
+		Texture1D,
+		Texture2D,
+		Texture2DArray,
+		TextureCube,
+		TextureCubeArray,
+		Texture3D
+	};
+
+	enum TextureUsageFlagBits :uint8_t {
+		TextureUsageNone = 0x0,
+		TextureUsageTransferSource = 0x1,
+		TextureUsageTransferDestination = 0x2,
+		TextureUsageSampled = 0x4,
+		TextureUsageStorage = 0x8,
+		TextureUsageColorAttachment = 0x10,
+		TextureUsageDepthStencilAttachment = 0x20,
+		TextureUsageTransientAttachment = 0x40,
+		TextureUsageInputAttachment = 0x80
+	};
+
+	enum AttachmentOutputUsageBits : uint8_t {
+		NextPassColor,
+		NextPassDepthStencil,
+		Sampling,
+		Present,
+	};
+
+	enum BufferType :uint8_t {
+		SVBO, // stable vertex buffer object
+		TVBO, // transient vertex buffer object
+		IBO, // index buffer object
+		UBO, // uniform buffer object
+		SSBO, // shader storage buffer objects
+		TBO, // Texel buffer object
+	};
+
+	enum RTLoadAction :uint8_t {
+		Keep,
+		Clear,
+		DontCare,
+	};
 
 #pragma pack(push)
 #pragma pack(1)
@@ -241,17 +295,6 @@ namespace Ks{
     };
 #pragma pack(pop)
 
-    enum VertexType {
-        VertexTypeFloat1,
-        VertexTypeFloat2,
-        VertexTypeFloat3,
-        VertexTypeFloat4,
-        VertexTypeHalf2,
-        VertexTypeHalf4,
-        VertexTypeUByte4,
-        VertexTypeUByte4N,
-    };
-
     struct VertexAttribueDescription {
         uint32_t    bufferIndex;
         uint32_t    offset;
@@ -261,6 +304,7 @@ namespace Ks{
             offset(0),
             type(VertexTypeFloat1){
             }
+		KS_JSON( bufferIndex, offset, type )
     };
 
     struct VertexBufferDescription {
@@ -272,6 +316,7 @@ namespace Ks{
         instanceMode(0),
         rate(1){
         }
+		KS_JSON( stride, instanceMode, rate )
     };
 
     struct PipelineVertexDescription {
@@ -281,76 +326,58 @@ namespace Ks{
         VertexBufferDescription     vertexBuffers[MaxVertexBufferBinding];
         PipelineVertexDescription(): vertexAttributeCount(0), vertexBufferCount(0) {
         }
+		KS_JSON( vertexAttributeCount, vertexAttributes, vertexBufferCount, vertexBuffers )
     };
+
+	struct DepthState {
+		uint8_t             depthWriteEnable = 1;
+		uint8_t             depthTestEnable = 1;
+		CompareFunction     depthFunction = CompareFunction::LessEqual;
+		KS_JSON(depthWriteEnable, depthTestEnable, depthFunction)
+	};
+
+	struct BlendState {
+		uint8_t             blendEnable = 1;
+		BlendFactor         blendSource = SourceAlpha;
+		BlendFactor         blendDestination = InvertSourceAlpha;
+		BlendOperation      blendOperation = BlendOpAdd;
+		KS_JSON(blendEnable, blendSource, blendDestination, blendOperation)
+	};
+
+	struct StencilState {
+		uint8_t             stencilEnable = 0;
+		StencilOperation    stencilFail = StencilOpKeep;
+		StencilOperation    stencilZFail = StencilOpKeep;
+		StencilOperation    stencilPass = StencilOpKeep;
+		uint8_t             twoSideStencil = 0;
+		StencilOperation    stencilFailCCW = StencilOpKeep;
+		StencilOperation    stencilZFailCCW = StencilOpKeep;
+		StencilOperation    stencilPassCCW = StencilOpKeep;
+		CompareFunction     stencilFunction = Greater;
+		uint32_t            stencilMask = 0xffffffff;
+		KS_JSON(stencilEnable, stencilFail, stencilZFail, stencilPass, twoSideStencil, stencilFailCCW, stencilZFailCCW, stencilPassCCW, stencilFunction, stencilMask )
+	};
+
+	static const uint8_t MaskRed = 1;
+	static const uint8_t MaskGreen = 2;
+	static const uint8_t MaskBlue = 4;
+	static const uint8_t MaskAlpha = 8;
 
     struct RenderState {
-        uint8_t             depthWriteEnable = 1;
-        uint8_t             depthTestEnable = 1;
-        CompareFunction     depthFunction = CompareFunction::LessEqual;
-        // write mask
-        uint8_t             red = 1;
-        uint8_t             green = 1;
-        uint8_t             blue = 1;
-        uint8_t             alpha = 1;
+		uint8_t				writeMask;
+		CullMode            cullMode = CullMode::None;
+		WindingMode         windingMode = Clockwise;
+		uint8_t             scissorEnable = 1;
+		DepthState			depthState;
+		BlendState			blendState;
+		StencilState		stencilState;
+		KS_JSON(writeMask, cullMode, windingMode, scissorEnable, depthState, blendState, stencilState )
+        //float               constantBias = 0.0f;
+        //float               slopeScaleBias = 0.0f;
         //
-        CullMode            cullMode = CullMode::None;
-        WindingMode         windingMode = Clockwise;
-        uint8_t             scissorEnable = 1;
-        //
-        uint8_t             blendEnable = 1;
-        BlendFactor         blendSource = SourceAlpha;
-        BlendFactor         blendDestination = InvertSourceAlpha;
-        BlendOperation      blendOperation = BlendOpAdd;
-        //
-        uint8_t             stencilEnable = 0;
-        StencilOperation    stencilFail = StencilOpKeep;
-        StencilOperation    stencilZFail = StencilOpKeep;
-        StencilOperation    stencilPass = StencilOpKeep;
-        
-        uint8_t             twoSideStencil = 0;
-        StencilOperation    stencilFailCCW = StencilOpKeep;
-        StencilOperation    stencilZFailCCW = StencilOpKeep;
-        StencilOperation    stencilPassCCW = StencilOpKeep;
-
-        CompareFunction     stencilFunction = Greater;
-        uint32_t            stencilMask = 0xffffffff;
-        //
-        float               constantBias = 0.0f;
-        float               slopeScaleBias = 0.0f;
-        //
-        PolygonMode         polygonMode = PMFill;
-        TopologyMode        topologyMode = TMTriangleList;
-        //
-
+        //PolygonMode         polygonMode = PMFill;
+        //TopologyMode        topologyMode = TMTriangleList;
     };
-
-    enum TextureType {
-		Texture1D,
-        Texture2D,
-        Texture2DArray,
-        TextureCube,
-        TextureCubeArray,
-        Texture3D
-    };
-
-	enum TextureUsageFlagBits :uint8_t {
-		TextureUsageNone = 0x0,
-		TextureUsageTransferSource = 0x1,
-		TextureUsageTransferDestination = 0x2,
-		TextureUsageSampled = 0x4,
-		TextureUsageStorage = 0x8,
-		TextureUsageColorAttachment = 0x10,
-		TextureUsageDepthStencilAttachment = 0x20,
-		TextureUsageTransientAttachment = 0x40,
-		TextureUsageInputAttachment = 0x80
-	};
-
-	enum AttachmentOutputUsageBits : uint8_t {
-		AttachmentOutputForNextPassColorAttachment,
-		AttachmentOutputForNextPassDepthStencilAttachment,
-		AttachmentOutputForSampling,
-		AttachmentOutputForPresent,
-	};
 
 	typedef uint8_t TextureUsageFlags;
 
@@ -364,12 +391,7 @@ namespace Ks{
         uint32_t depth;
     };
 
-    enum BufferType {
-        SVBO,
-        DVBO,
-        IBO,
-        UBO,
-    };
+    
 
 	struct ArgumentDescription {
 		const char** uboNames;
@@ -378,21 +400,18 @@ namespace Ks{
 		int samplerCount;
 	};
 
-	enum RTLoadAction:uint8_t {
-		Keep,
-		Clear,
-		DontCare,
-	};
+	
 
-	// RenderPassDescription descript the 
+	// RenderPassDescription describe the 
 	// load action
 #pragma pack( push, 1 )
+	struct AttachmentDescription {
+		KsFormat format;
+		RTLoadAction loadAction;
+		AttachmentOutputUsageBits usage;
+		KS_JSON(format, loadAction, usage)
+	};
 	struct RenderPassDescription {
-		struct AttachmentDescription {
-			KsFormat format;
-			RTLoadAction loadAction;
-			AttachmentOutputUsageBits usage;
-		};
 		// render pass behavior
 		uint32_t colorAttachmentCount;
 		// framebuffer description
@@ -402,6 +421,7 @@ namespace Ks{
 		bool operator < (const RenderPassDescription& _desc) const {
 			return memcmp(this, &_desc, sizeof(RenderPassDescription)) < 0;
 		}
+		KS_JSON(colorAttachmentCount, colorAttachment, depthStencil)
 	};
 #pragma pack (pop)
 
@@ -417,12 +437,11 @@ namespace Ks{
 		// shader
 		char            vertexShader[64];
 		char            fragmentShader[64];
-		// render pass
 		RenderPassDescription renderPassDescription;
-		// render state
 		RenderState     renderState;
-		//
 		PipelineVertexDescription vertexLayout;
+		//
+		KS_JSON(vertexShader, fragmentShader, renderPassDescription, renderState, vertexLayout)
 	};
 
 
@@ -432,7 +451,7 @@ namespace Ks{
 	class KS_API_DECL IView {
 	public:
 		virtual void resize(uint32_t _width, uint32_t _height) = 0;
-		virtual bool beginFrame() = 0;
+		virtual void beginFrame() = 0;
 		virtual void endFrame() = 0;
 		//
 		virtual IRenderPass* getRenderPass() = 0;
@@ -449,24 +468,18 @@ namespace Ks{
     };
 
     class KS_API_DECL IBuffer {
+	protected:
+		BufferType m_type;
     public:
+		IBuffer(BufferType _type) : m_type(_type) {}
+		//
         virtual size_t getSize() = 0;
-        virtual BufferType getType() = 0;
+		virtual void setData(const void * _data, size_t _size, size_t _offset) = 0;
 		virtual void release() = 0;
-    };
-
-    class KS_API_DECL IStaticVertexBuffer: public IBuffer {
-        public:
-			virtual void setData( const void * _data, size_t _size, size_t _offset) = 0;
-    };
-
-	class IDynamicVertexBuffer : public IBuffer {
-        public:
-            virtual void setData( const void* _data, size_t _size, size_t _offset ) = 0;
-    };
-    class KS_API_DECL IIndexBuffer: public IBuffer {
-        public:
-            virtual void setData( const void* _data, size_t _size, size_t _offset ) = 0;
+		// don't re-implement this method
+		virtual BufferType getType() final {
+			return m_type;
+		}
     };
 
     class KS_API_DECL IAttachment {
@@ -484,6 +497,7 @@ namespace Ks{
         virtual void end() = 0;
 		virtual void release() = 0;
 		virtual void setClear( const RpClear& _clear ) = 0;
+		virtual void resize( uint32_t _width, uint32_t _height ) = 0;
     };
 
 	typedef union {
@@ -494,7 +508,6 @@ namespace Ks{
 			uint32_t vkSet;
 			uint32_t vkBinding;
 		};
-        uint32_t mtlIndex;
 	} SamplerSlot ;
 
 	typedef union {
@@ -507,7 +520,6 @@ namespace Ks{
 			uint16_t vkUBOOffset;
 			uint16_t vkUBOSize; // unused : default 0
 		};
-        uint32_t mtlIndex;
 	} UniformSlot;
 
 	class KS_API_DECL IArgument {
@@ -523,21 +535,6 @@ namespace Ks{
 		virtual void release() = 0;
 	};
 
-	class KS_API_DECL IPipeline;
-
-	struct DrawableDescription {
-		uint32_t bufferCount;
-		IBuffer* buffers[MaxVertexBufferBinding];
-		IIndexBuffer* indexBuffer;
-	};
-
-	class KS_API_DECL IDrawable {
-	private:
-	public:
-		virtual IPipeline* getPipeline() = 0;
-		virtual void release() = 0;
-	};
-
     class KS_API_DECL IPipeline {
     private:
     public:
@@ -546,21 +543,20 @@ namespace Ks{
 		virtual void setViewport(const Viewport& _viewport) = 0;
 		virtual void setScissor(const Scissor& _scissor) = 0;
 
-		virtual void draw( IDrawable* _drawable, TopologyMode _pmode, uint32_t _offset, uint32_t _verticesCount ) = 0;
-		virtual void drawIndexed(IDrawable* _drawable, TopologyMode _pmode, uint32_t _indicesCount ) = 0;
-		virtual void drawIndexed(IDrawable* _drawable, IIndexBuffer* _indexBuffer, TopologyMode _pmode, uint32_t _indicesCount) = 0;
-		virtual void drawIndexedInstanced(IDrawable* _drawable, TopologyMode _pmode, uint32_t _indicesCount, uint32_t _instanceCount) = 0;
-		/*
-		virtual void draw(PolygonMode _mode, uint32_t _offset, uint32_t _vertexCount) = 0;
-		virtual void draw( IDrawable* _drawable, TopologyMode _ )
-		virtual void drawIndexed(TopologyMode _mode, IIndexBuffer* _ibo, uint32_t _indexCount) = 0;
-		virtual void drawInstance(TopologyMode _mode, IIndexBuffer* _ibo, uint32_t _indexCount, uint32_t _instanceCount) = 0;*/
-		virtual void setPolygonOffset(float _constantBias, float _slopeScaleBias) = 0;
 
-		//virtual void bindDrawable(IDrawable* _drawable) = 0;
+		virtual void bindVertexBuffer(uint32_t _index, IBuffer* _vertexBuffer, uint32_t _offset) = 0;
+		virtual void draw(TopologyMode _pmode, uint32_t _offset, uint32_t _vertexCount) = 0;
+		virtual void drawIndexed(TopologyMode _pmode, IBuffer* _indexBuffer, uint32_t _indexOffset, uint32_t _indexCount) = 0;
+		virtual void drawInstanced(TopologyMode _pmode, uint32_t _vertexOffset, uint32_t _vertexCount, uint32_t _instanceCount) = 0;
+		virtual void drawInstanced(TopologyMode _pmode, IBuffer* _indexBuffer, uint32_t _indexOffset, uint32_t _indexCount, uint32_t _instanceCount) = 0;
+		//
+		virtual void setPolygonOffset(float _constantBias, float _slopeScaleBias) = 0;
+		//
 		virtual IArgument* createArgument(const ArgumentDescription& _desc) = 0;
 		virtual IArgument* createArgument(uint32_t _setId) = 0;
-		virtual IDrawable* createDrawable( const DrawableDescription& ) = 0;
+		//
+		virtual void setShaderCache(const void* _data, size_t _size, size_t _offset) = 0;
+		//
 		virtual const PipelineDescription& getDescription() = 0;
 		virtual void release() = 0;
     };
@@ -572,9 +568,9 @@ namespace Ks{
 	public:
 		virtual bool initialize( Ks::IArch* _arch, void* _wnd ) = 0;
         virtual IView* createView(void* _nativeWindow) = 0;
-        virtual IStaticVertexBuffer* createStaticVertexBuffer( void* _data, size_t _size ) = 0;
-        virtual IDynamicVertexBuffer* createDynamicVertexBuffer( size_t _size ) = 0;
-        virtual IIndexBuffer* createIndexBuffer( void* _data, size_t _size ) = 0;
+		virtual IBuffer* createStableVBO(void* _data, size_t _size) = 0;
+		virtual IBuffer* createTransientVBO(size_t _size) = 0;
+		virtual IBuffer* createIndexBuffer(void* _data, size_t _size) = 0;
 		//virtual IUniformBuffer* createUniformBuffer(size_t _size) = 0;
         virtual ITexture* createTexture(const TextureDescription& _desc, TextureUsageFlags _usage = TextureUsageNone ) = 0;
 		virtual ITexture* createTextureDDS( const void* _data, size_t _length ) = 0;

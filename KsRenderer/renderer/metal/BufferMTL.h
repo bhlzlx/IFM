@@ -44,14 +44,14 @@ namespace Ks {
         void release() {
             delete this;
         }
-        
-        void setDataBlocked( const void * _data, size_t _length, size_t _offset );
-        void setDataQueued( const void * _data, size_t _length, size_t _offset );
+        //
+        void writeDataImmediately( const void* _data, size_t _length, size_t _offset );
+        void updateDataQueued( const void* _data, size_t _length, size_t _offset );
+        void uploadData( const void * _data, size_t _length, size_t _offset );
         //
         static BufferMTL* createBuffer( size_t _size, const void * _data, BufferUsageFlagBits _usage );
         
         ~BufferMTL() {
-
         }
     };
     

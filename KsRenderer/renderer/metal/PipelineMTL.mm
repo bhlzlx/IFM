@@ -55,21 +55,21 @@ namespace Ks {
         // render pass descriptioin
         for ( uint32_t colorIndex = 0; colorIndex < _desc.renderPassDescription.colorAttachmentCount; ++colorIndex) {
             descriptor.colorAttachments[colorIndex].pixelFormat = KsFormatToMTL( _desc.renderPassDescription.colorAttachment[colorIndex].format );
-            descriptor.colorAttachments[colorIndex].blendingEnabled = _desc.renderState.blendEnable;
-            descriptor.colorAttachments[colorIndex].sourceRGBBlendFactor = BlendFactorToMTL( _desc.renderState.blendSource );
-            descriptor.colorAttachments[colorIndex].destinationRGBBlendFactor = BlendFactorToMTL( _desc.renderState.blendDestination );
-            descriptor.colorAttachments[colorIndex].rgbBlendOperation = BlendOpToMTL( _desc.renderState.blendOperation );
-            descriptor.colorAttachments[colorIndex].sourceAlphaBlendFactor = BlendFactorToMTL( _desc.renderState.blendSource );
-            descriptor.colorAttachments[colorIndex].destinationAlphaBlendFactor = BlendFactorToMTL( _desc.renderState.blendDestination );
-            descriptor.colorAttachments[colorIndex].alphaBlendOperation = BlendOpToMTL( _desc.renderState.blendOperation );;
+            descriptor.colorAttachments[colorIndex].blendingEnabled = _desc.renderState.blendState.blendEnable;
+            descriptor.colorAttachments[colorIndex].sourceRGBBlendFactor = BlendFactorToMTL( _desc.renderState.blendState.blendSource );
+            descriptor.colorAttachments[colorIndex].destinationRGBBlendFactor = BlendFactorToMTL( _desc.renderState.blendState.blendDestination );
+            descriptor.colorAttachments[colorIndex].rgbBlendOperation = BlendOpToMTL( _desc.renderState.blendState.blendOperation );
+            descriptor.colorAttachments[colorIndex].sourceAlphaBlendFactor = BlendFactorToMTL( _desc.renderState.blendState.blendSource );
+            descriptor.colorAttachments[colorIndex].destinationAlphaBlendFactor = BlendFactorToMTL( _desc.renderState.blendState.blendDestination );
+            descriptor.colorAttachments[colorIndex].alphaBlendOperation = BlendOpToMTL( _desc.renderState.blendState.blendOperation );
             descriptor.colorAttachments[colorIndex].writeMask = 0;
-            if( _desc.renderState.red )
+            if( _desc.renderState.writeMask & 1 )
                 descriptor.colorAttachments[colorIndex].writeMask |= MTLColorWriteMaskRed;
-            if( _desc.renderState.green )
+            if( _desc.renderState.writeMask & 2 )
                 descriptor.colorAttachments[colorIndex].writeMask |= MTLColorWriteMaskGreen;
-            if( _desc.renderState.blue )
+            if( _desc.renderState.writeMask & 4  )
                 descriptor.colorAttachments[colorIndex].writeMask |= MTLColorWriteMaskBlue;
-            if( _desc.renderState.alpha )
+            if( _desc.renderState.writeMask & 8  )
                 descriptor.colorAttachments[colorIndex].writeMask |= MTLColorWriteMaskAlpha;
         }
         if( _desc.renderPassDescription.depthStencil.format != KsInvalidFormat ){
@@ -83,18 +83,18 @@ namespace Ks {
         descriptor.inputPrimitiveTopology = MTLPrimitiveTopologyClassTriangle;
         //
         MTLDepthStencilDescriptor* depthStencilDescriptor = [[MTLDepthStencilDescriptor alloc] init];
-        depthStencilDescriptor.depthCompareFunction = CompareFunctionToMTL(_desc.renderState.depthFunction);
-        depthStencilDescriptor.depthWriteEnabled = _desc.renderState.depthWriteEnable;
+        depthStencilDescriptor.depthCompareFunction = CompareFunctionToMTL(_desc.renderState.depthState.depthFunction);
+        depthStencilDescriptor.depthWriteEnabled = _desc.renderState.depthState.depthWriteEnable;
         if( IsStencilFormat( _desc.renderPassDescription.depthStencil.format )) {
-            depthStencilDescriptor.frontFaceStencil.writeMask = depthStencilDescriptor.frontFaceStencil.readMask = _desc.renderState.stencilMask;
-            depthStencilDescriptor.frontFaceStencil.stencilCompareFunction = CompareFunctionToMTL( _desc.renderState.stencilFunction );
-            depthStencilDescriptor.frontFaceStencil.stencilFailureOperation = StencilOpToMTL( _desc.renderState.stencilFail );
-            depthStencilDescriptor.frontFaceStencil.depthStencilPassOperation = StencilOpToMTL( _desc.renderState.stencilPass );
+            depthStencilDescriptor.frontFaceStencil.writeMask = depthStencilDescriptor.frontFaceStencil.readMask = _desc.renderState.stencilState.stencilMask;
+            depthStencilDescriptor.frontFaceStencil.stencilCompareFunction = CompareFunctionToMTL( _desc.renderState.stencilState.stencilFunction );
+            depthStencilDescriptor.frontFaceStencil.stencilFailureOperation = StencilOpToMTL( _desc.renderState.stencilState.stencilFail );
+            depthStencilDescriptor.frontFaceStencil.depthStencilPassOperation = StencilOpToMTL( _desc.renderState.stencilState.stencilPass );
             //
-            depthStencilDescriptor.backFaceStencil.writeMask = depthStencilDescriptor.backFaceStencil.readMask = _desc.renderState.stencilMask;
-            depthStencilDescriptor.backFaceStencil.stencilCompareFunction = CompareFunctionToMTL( _desc.renderState.stencilFunction );
-            depthStencilDescriptor.backFaceStencil.stencilFailureOperation = StencilOpToMTL( _desc.renderState.stencilFailCCW );
-            depthStencilDescriptor.backFaceStencil.depthStencilPassOperation = StencilOpToMTL( _desc.renderState.stencilPassCCW );
+            depthStencilDescriptor.backFaceStencil.writeMask = depthStencilDescriptor.backFaceStencil.readMask = _desc.renderState.stencilState.stencilMask;
+            depthStencilDescriptor.backFaceStencil.stencilCompareFunction = CompareFunctionToMTL( _desc.renderState.stencilState.stencilFunction );
+            depthStencilDescriptor.backFaceStencil.stencilFailureOperation = StencilOpToMTL( _desc.renderState.stencilState.stencilFailCCW );
+            depthStencilDescriptor.backFaceStencil.depthStencilPassOperation = StencilOpToMTL( _desc.renderState.stencilState.stencilPassCCW );
         }        
         NSError* pipelinError = nil;
         MTLRenderPipelineReflection * reflection = nil;
@@ -140,6 +140,35 @@ namespace Ks {
         m_scissor.width = _scissor.size.width;
     }
     
+    void PipelineMTL::bindVertexBuffer(uint32_t _index, Ks::IBuffer *_vertexBuffer, uint32_t _offset) {
+        GetContext( context )
+        auto encoder = context->getRenderCommandEncoder();
+        id<MTLBuffer> vb = nil;
+        if( _vertexBuffer->getType() == SVBO ) {
+        }
+        encoder setVertexBuffer:<#(nullable id<MTLBuffer>)#> offset:<#(NSUInteger)#> atIndex:<#(NSUInteger)#>
+    }
+    
+    void PipelineMTL::draw(Ks::TopologyMode _pmode, uint32_t _offset, uint32_t _vertexCount) {
+        
+    }
+    
+    void PipelineMTL::drawIndexed(Ks::TopologyMode _pmode, Ks::IBuffer *_indexBuffer, uint32_t _indexOffset, uint32_t _indexCount) {
+        
+    }
+    
+    void PipelineMTL::drawInstanced(Ks::TopologyMode _pmode, uint32_t _vertexOffset, uint32_t _vertexCount, uint32_t _instanceCount) {
+        
+    }
+    
+    void PipelineMTL::drawInstanced(Ks::TopologyMode _pmode, Ks::IBuffer *_indexBuffer, uint32_t _indexOffset, uint32_t _indexCount, uint32_t _instanceCount) {
+        
+    }
+    
+    void PipelineMTL::setShaderCache(const void *_data, size_t _size, size_t _offset) {
+        
+    }
+    /*
     void PipelineMTL::draw( IDrawable* _drawable, TopologyMode _pmode, uint32_t _offset, uint32_t _verticesCount ){
         GetContext( context )
         auto encoder = context->getRenderCommandEncoder();
@@ -179,6 +208,7 @@ namespace Ks {
                      indexBufferOffset:0
                          instanceCount:_indicesCount];
     }
+     */
     void PipelineMTL::setPolygonOffset(float _constantBias, float _slopeScaleBias){
 
     }
@@ -249,22 +279,7 @@ namespace Ks {
     IArgument* PipelineMTL::createArgument(uint32_t _setId){
         return nullptr;
     }
-    IDrawable* PipelineMTL::createDrawable( const DrawableDescription& _ddesc ){
-        DrawableMTL * drawable = new DrawableMTL();
-        for( int i = 0; i<_ddesc.bufferCount; ++i ) {
-            if( _ddesc.buffers[i]->getType()== BufferType::DVBO ) {
-                DVBOMTL * vbo = (DVBOMTL*)_ddesc.buffers[i];
-                drawable->m_vbo.push_back( vbo->m_buffer.buffer() );
-            }else if( _ddesc.buffers[i]->getType()== BufferType::SVBO ) {
-                SVBOMTL* vbo = (SVBOMTL*)_ddesc.buffers[i];
-                drawable->m_vbo.push_back( vbo->m_buffer.buffer() );
-            }
-        }
-        if(_ddesc.indexBuffer) {
-            drawable->m_ibo = ((IBOMTL*)_ddesc.indexBuffer)->m_buffer.buffer();
-        }
-        return drawable;
-    }
+    
     const PipelineDescription& PipelineMTL::getDescription(){
         return m_desc;
     }
