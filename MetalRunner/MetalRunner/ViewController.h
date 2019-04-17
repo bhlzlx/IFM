@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#include <QuartzCore/CAMetalLayer.h>
 #import "ks/io/io.h"
 #import <KsRenderer/KsRenderer.h>
-#include <QuartzCore/CAMetalLayer.h>
 #import "KsView.h"
 #import "Triangle.h"
 
