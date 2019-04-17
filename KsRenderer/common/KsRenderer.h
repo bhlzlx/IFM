@@ -451,7 +451,7 @@ namespace Ks{
 	class KS_API_DECL IView {
 	public:
 		virtual void resize(uint32_t _width, uint32_t _height) = 0;
-		virtual void beginFrame() = 0;
+		virtual bool beginFrame() = 0;
 		virtual void endFrame() = 0;
 		//
 		virtual IRenderPass* getRenderPass() = 0;
@@ -484,7 +484,7 @@ namespace Ks{
 
     class KS_API_DECL IAttachment {
     public:
-        virtual void resize( uint32_t _width, uint32_t _height ) = 0;
+        //virtual void resize( uint32_t _width, uint32_t _height ) = 0;
         virtual const ITexture* getTexture() const = 0;
 		virtual void release() = 0;
 		virtual KsFormat getFormat() const = 0;
@@ -493,7 +493,7 @@ namespace Ks{
     class KS_API_DECL IRenderPass {
     private:
     public:
-        virtual bool begin( uint32_t _width, uint32_t _height ) = 0;
+        virtual bool begin() = 0;
         virtual void end() = 0;
 		virtual void release() = 0;
 		virtual void setClear( const RpClear& _clear ) = 0;
@@ -553,7 +553,7 @@ namespace Ks{
 		virtual void setPolygonOffset(float _constantBias, float _slopeScaleBias) = 0;
 		//
 		virtual IArgument* createArgument(const ArgumentDescription& _desc) = 0;
-		virtual IArgument* createArgument(uint32_t _setId) = 0;
+		//virtual IArgument* createArgument(uint32_t _setId) = 0;
 		//
 		virtual void setShaderCache(const void* _data, size_t _size, size_t _offset) = 0;
 		//
@@ -575,7 +575,7 @@ namespace Ks{
         virtual ITexture* createTexture(const TextureDescription& _desc, TextureUsageFlags _usage = TextureUsageNone ) = 0;
 		virtual ITexture* createTextureDDS( const void* _data, size_t _length ) = 0;
 		virtual ITexture* createTextureKTX(const void* _data, size_t _length) = 0;
-		virtual IAttachment* createAttachment(KsFormat _format) = 0;
+		virtual IAttachment* createAttachment(KsFormat _format,uint32_t _width, uint32_t _height ) = 0;
         virtual IRenderPass* createRenderPass( const RenderPassDescription& _desc, IAttachment** _colorAttachments, IAttachment* _depthStencil ) = 0;
         virtual IPipeline* createPipeline( const PipelineDescription& _desc ) = 0;
 		virtual KsFormat swapchainFormat() const = 0;
